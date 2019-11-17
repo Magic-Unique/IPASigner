@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A04D014677610568EF6F884 /* libPods-IPASigner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 122B660409D081930661DF69 /* libPods-IPASigner.a */; };
+		6D449FB7233A4AD50098D3E3 /* NSArray+IPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D449FB6233A4AD50098D3E3 /* NSArray+IPASigner.m */; };
+		6D449FBA233A4D8C0098D3E3 /* IPASigner+Sign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D449FB9233A4D8C0098D3E3 /* IPASigner+Sign.m */; };
+		6D50987D235CA3B2006FE13B /* ISIPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D50987C235CA3B2006FE13B /* ISIPASigner.m */; };
+		6D50987E235CB51D006FE13B /* IPASigner+Resign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D449FC3233A75600098D3E3 /* IPASigner+Resign.m */; };
+		6D5701B2235801A400348DC1 /* ISEntitlements.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5701B1235801A400348DC1 /* ISEntitlements.m */; };
+		6D9066C92351D97E00104A19 /* ISSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9066C82351D97E00104A19 /* ISSigner.m */; };
+		6D9066CC2351D9A300104A19 /* ISSignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9066CB2351D9A300104A19 /* ISSignManager.m */; };
+		6D9066D22351DCBB00104A19 /* MUPath+IPA.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9066D12351DCBB00104A19 /* MUPath+IPA.m */; };
+		6D944AA32359FCD1003252E1 /* ISInfoModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D944AA22359FCD1003252E1 /* ISInfoModifier.m */; };
+		6D9D8343237D04C900350638 /* ISShellChmod.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9D8342237D04C900350638 /* ISShellChmod.m */; };
+		6DA8A55C2330142100044B5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A55B2330142100044B5B /* main.m */; };
+		6DA8A56B2330169600044B5B /* IPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A56A2330169600044B5B /* IPASigner.m */; };
+		6DA8A5712330177C00044B5B /* ISIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5702330177C00044B5B /* ISIdentity.m */; };
+		6DA8A5742330178E00044B5B /* ISProvision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5732330178E00044B5B /* ISProvision.m */; };
+		6DA8A5772330185300044B5B /* ISProvisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5762330185300044B5B /* ISProvisionManager.m */; };
+		6DA8A57A2330185F00044B5B /* ISIdentityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5792330185F00044B5B /* ISIdentityManager.m */; };
+		6DA8A57E233018B700044B5B /* ISShellPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A57D233018B700044B5B /* ISShellPath.m */; };
+		6DA8A58123301C1900044B5B /* ISShellSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A58023301C1900044B5B /* ISShellSecurity.m */; };
+		6DA8A58423301F8600044B5B /* ISShellMakeTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A58323301F8600044B5B /* ISShellMakeTemp.m */; };
+		6DA8A58A2330219400044B5B /* ISShellCodesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5892330219400044B5B /* ISShellCodesign.m */; };
+		6DA8A58D2330267200044B5B /* ISShellOtool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A58C2330267200044B5B /* ISShellOtool.m */; };
+		6DC58238235DDD7D0071F758 /* IPASigner+Provision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A96A23303EB100044B5B /* IPASigner+Provision.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6DA8A5562330142100044B5B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		122B660409D081930661DF69 /* libPods-IPASigner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IPASigner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		267E08FD43F672AEE112AA56 /* Pods-IPASigner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IPASigner.debug.xcconfig"; path = "Target Support Files/Pods-IPASigner/Pods-IPASigner.debug.xcconfig"; sourceTree = "<group>"; };
+		6A2CA8DCB876828F327B938A /* Pods-IPASigner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IPASigner.release.xcconfig"; path = "Target Support Files/Pods-IPASigner/Pods-IPASigner.release.xcconfig"; sourceTree = "<group>"; };
+		6D449FB5233A4AD50098D3E3 /* NSArray+IPASigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+IPASigner.h"; sourceTree = "<group>"; };
+		6D449FB6233A4AD50098D3E3 /* NSArray+IPASigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IPASigner.m"; sourceTree = "<group>"; };
+		6D449FB8233A4D8C0098D3E3 /* IPASigner+Sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Sign.h"; sourceTree = "<group>"; };
+		6D449FB9233A4D8C0098D3E3 /* IPASigner+Sign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Sign.m"; sourceTree = "<group>"; };
+		6D449FC2233A75600098D3E3 /* IPASigner+Resign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Resign.h"; sourceTree = "<group>"; };
+		6D449FC3233A75600098D3E3 /* IPASigner+Resign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Resign.m"; sourceTree = "<group>"; };
+		6D50987B235CA3B2006FE13B /* ISIPASigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISIPASigner.h; sourceTree = "<group>"; };
+		6D50987C235CA3B2006FE13B /* ISIPASigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISIPASigner.m; sourceTree = "<group>"; };
+		6D5701B0235801A400348DC1 /* ISEntitlements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISEntitlements.h; sourceTree = "<group>"; };
+		6D5701B1235801A400348DC1 /* ISEntitlements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISEntitlements.m; sourceTree = "<group>"; };
+		6D9066C72351D97E00104A19 /* ISSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISSigner.h; sourceTree = "<group>"; };
+		6D9066C82351D97E00104A19 /* ISSigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISSigner.m; sourceTree = "<group>"; };
+		6D9066CA2351D9A300104A19 /* ISSignManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISSignManager.h; sourceTree = "<group>"; };
+		6D9066CB2351D9A300104A19 /* ISSignManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISSignManager.m; sourceTree = "<group>"; };
+		6D9066D02351DCBB00104A19 /* MUPath+IPA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MUPath+IPA.h"; sourceTree = "<group>"; };
+		6D9066D12351DCBB00104A19 /* MUPath+IPA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MUPath+IPA.m"; sourceTree = "<group>"; };
+		6D944AA12359FCD1003252E1 /* ISInfoModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISInfoModifier.h; sourceTree = "<group>"; };
+		6D944AA22359FCD1003252E1 /* ISInfoModifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISInfoModifier.m; sourceTree = "<group>"; };
+		6D9D8341237D04C900350638 /* ISShellChmod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellChmod.h; sourceTree = "<group>"; };
+		6D9D8342237D04C900350638 /* ISShellChmod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellChmod.m; sourceTree = "<group>"; };
+		6DA8A5582330142100044B5B /* IPASigner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IPASigner; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DA8A55B2330142100044B5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DA8A562233015DA00044B5B /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		6DA8A5692330169600044B5B /* IPASigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPASigner.h; sourceTree = "<group>"; };
+		6DA8A56A2330169600044B5B /* IPASigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPASigner.m; sourceTree = "<group>"; };
+		6DA8A56F2330177C00044B5B /* ISIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISIdentity.h; sourceTree = "<group>"; };
+		6DA8A5702330177C00044B5B /* ISIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISIdentity.m; sourceTree = "<group>"; };
+		6DA8A5722330178E00044B5B /* ISProvision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISProvision.h; sourceTree = "<group>"; };
+		6DA8A5732330178E00044B5B /* ISProvision.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISProvision.m; sourceTree = "<group>"; };
+		6DA8A5752330185300044B5B /* ISProvisionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISProvisionManager.h; sourceTree = "<group>"; };
+		6DA8A5762330185300044B5B /* ISProvisionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISProvisionManager.m; sourceTree = "<group>"; };
+		6DA8A5782330185F00044B5B /* ISIdentityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISIdentityManager.h; sourceTree = "<group>"; };
+		6DA8A5792330185F00044B5B /* ISIdentityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISIdentityManager.m; sourceTree = "<group>"; };
+		6DA8A57C233018B700044B5B /* ISShellPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellPath.h; sourceTree = "<group>"; };
+		6DA8A57D233018B700044B5B /* ISShellPath.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellPath.m; sourceTree = "<group>"; };
+		6DA8A57F23301C1900044B5B /* ISShellSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellSecurity.h; sourceTree = "<group>"; };
+		6DA8A58023301C1900044B5B /* ISShellSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellSecurity.m; sourceTree = "<group>"; };
+		6DA8A58223301F8600044B5B /* ISShellMakeTemp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellMakeTemp.h; sourceTree = "<group>"; };
+		6DA8A58323301F8600044B5B /* ISShellMakeTemp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellMakeTemp.m; sourceTree = "<group>"; };
+		6DA8A5882330219300044B5B /* ISShellCodesign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellCodesign.h; sourceTree = "<group>"; };
+		6DA8A5892330219400044B5B /* ISShellCodesign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellCodesign.m; sourceTree = "<group>"; };
+		6DA8A58B2330267200044B5B /* ISShellOtool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellOtool.h; sourceTree = "<group>"; };
+		6DA8A58C2330267200044B5B /* ISShellOtool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellOtool.m; sourceTree = "<group>"; };
+		6DA8A96923303EB100044B5B /* IPASigner+Provision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Provision.h"; sourceTree = "<group>"; };
+		6DA8A96A23303EB100044B5B /* IPASigner+Provision.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Provision.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DA8A5552330142100044B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A04D014677610568EF6F884 /* libPods-IPASigner.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4CC25978F9D8424790FBCC81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				122B660409D081930661DF69 /* libPods-IPASigner.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6DA8A54F2330142100044B5B = {
+			isa = PBXGroup;
+			children = (
+				6DA8A55A2330142100044B5B /* IPASigner */,
+				6DA8A5592330142100044B5B /* Products */,
+				BFC5755C2A1B5C6EC315336E /* Pods */,
+				4CC25978F9D8424790FBCC81 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		6DA8A5592330142100044B5B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5582330142100044B5B /* IPASigner */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DA8A55A2330142100044B5B /* IPASigner */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5632330168500044B5B /* Classes */,
+				6DA8A55B2330142100044B5B /* main.m */,
+				6DA8A562233015DA00044B5B /* PrefixHeader.pch */,
+			);
+			path = IPASigner;
+			sourceTree = "<group>";
+		};
+		6DA8A5632330168500044B5B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5642330168500044B5B /* Library */,
+				6DA8A5652330168500044B5B /* Utils */,
+				6DA8A5662330168500044B5B /* Manager */,
+				6DA8A5672330168500044B5B /* Model */,
+				6DA8A57B2330189D00044B5B /* Shell */,
+				6DA8A5682330168500044B5B /* Command */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6DA8A5642330168500044B5B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				6D449FB5233A4AD50098D3E3 /* NSArray+IPASigner.h */,
+				6D449FB6233A4AD50098D3E3 /* NSArray+IPASigner.m */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		6DA8A5652330168500044B5B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6D9066C72351D97E00104A19 /* ISSigner.h */,
+				6D9066C82351D97E00104A19 /* ISSigner.m */,
+				6D50987B235CA3B2006FE13B /* ISIPASigner.h */,
+				6D50987C235CA3B2006FE13B /* ISIPASigner.m */,
+				6D944AA12359FCD1003252E1 /* ISInfoModifier.h */,
+				6D944AA22359FCD1003252E1 /* ISInfoModifier.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6DA8A5662330168500044B5B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5752330185300044B5B /* ISProvisionManager.h */,
+				6DA8A5762330185300044B5B /* ISProvisionManager.m */,
+				6DA8A5782330185F00044B5B /* ISIdentityManager.h */,
+				6DA8A5792330185F00044B5B /* ISIdentityManager.m */,
+				6D9066CA2351D9A300104A19 /* ISSignManager.h */,
+				6D9066CB2351D9A300104A19 /* ISSignManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		6DA8A5672330168500044B5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5722330178E00044B5B /* ISProvision.h */,
+				6DA8A5732330178E00044B5B /* ISProvision.m */,
+				6DA8A56F2330177C00044B5B /* ISIdentity.h */,
+				6DA8A5702330177C00044B5B /* ISIdentity.m */,
+				6D5701B0235801A400348DC1 /* ISEntitlements.h */,
+				6D5701B1235801A400348DC1 /* ISEntitlements.m */,
+				6D9066D02351DCBB00104A19 /* MUPath+IPA.h */,
+				6D9066D12351DCBB00104A19 /* MUPath+IPA.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6DA8A5682330168500044B5B /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A5692330169600044B5B /* IPASigner.h */,
+				6DA8A56A2330169600044B5B /* IPASigner.m */,
+				6DA8A96923303EB100044B5B /* IPASigner+Provision.h */,
+				6DA8A96A23303EB100044B5B /* IPASigner+Provision.m */,
+				6D449FB8233A4D8C0098D3E3 /* IPASigner+Sign.h */,
+				6D449FB9233A4D8C0098D3E3 /* IPASigner+Sign.m */,
+				6D449FC2233A75600098D3E3 /* IPASigner+Resign.h */,
+				6D449FC3233A75600098D3E3 /* IPASigner+Resign.m */,
+			);
+			path = Command;
+			sourceTree = "<group>";
+		};
+		6DA8A57B2330189D00044B5B /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				6DA8A57C233018B700044B5B /* ISShellPath.h */,
+				6DA8A57D233018B700044B5B /* ISShellPath.m */,
+				6D9D8341237D04C900350638 /* ISShellChmod.h */,
+				6D9D8342237D04C900350638 /* ISShellChmod.m */,
+				6DA8A57F23301C1900044B5B /* ISShellSecurity.h */,
+				6DA8A58023301C1900044B5B /* ISShellSecurity.m */,
+				6DA8A58223301F8600044B5B /* ISShellMakeTemp.h */,
+				6DA8A58323301F8600044B5B /* ISShellMakeTemp.m */,
+				6DA8A5882330219300044B5B /* ISShellCodesign.h */,
+				6DA8A5892330219400044B5B /* ISShellCodesign.m */,
+				6DA8A58B2330267200044B5B /* ISShellOtool.h */,
+				6DA8A58C2330267200044B5B /* ISShellOtool.m */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		BFC5755C2A1B5C6EC315336E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				267E08FD43F672AEE112AA56 /* Pods-IPASigner.debug.xcconfig */,
+				6A2CA8DCB876828F327B938A /* Pods-IPASigner.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DA8A5572330142100044B5B /* IPASigner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DA8A55F2330142100044B5B /* Build configuration list for PBXNativeTarget "IPASigner" */;
+			buildPhases = (
+				940AE0BAC89CE8B014C640A3 /* [CP] Check Pods Manifest.lock */,
+				6DA8A5542330142100044B5B /* Sources */,
+				6DA8A5552330142100044B5B /* Frameworks */,
+				6DA8A5562330142100044B5B /* CopyFiles */,
+				6DA8A96C23303F9800044B5B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IPASigner;
+			productName = IPASigner;
+			productReference = 6DA8A5582330142100044B5B /* IPASigner */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DA8A5502330142100044B5B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IS;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Magic-Unique";
+				TargetAttributes = {
+					6DA8A5572330142100044B5B = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = 6DA8A5532330142100044B5B /* Build configuration list for PBXProject "IPASigner" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6DA8A54F2330142100044B5B;
+			productRefGroup = 6DA8A5592330142100044B5B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DA8A5572330142100044B5B /* IPASigner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6DA8A96C23303F9800044B5B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nif [[ \"${CONFIGURATION}\" == \"Release\" ]]; then\necho \"Install to /usr/local/bin\"\nrm /usr/local/bin/ipasigner\ncp ${BUILT_PRODUCTS_DIR}/${TARGET_NAME} /usr/local/bin/ipasigner\n\n#scp /usr/local/bin/ipasigner luckin@10.99.101.109:/usr/local/bin/ipasigner\n\nfi\n";
+		};
+		940AE0BAC89CE8B014C640A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IPASigner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DA8A5542330142100044B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D9066CC2351D9A300104A19 /* ISSignManager.m in Sources */,
+				6DA8A58123301C1900044B5B /* ISShellSecurity.m in Sources */,
+				6D50987E235CB51D006FE13B /* IPASigner+Resign.m in Sources */,
+				6DA8A5712330177C00044B5B /* ISIdentity.m in Sources */,
+				6DA8A58A2330219400044B5B /* ISShellCodesign.m in Sources */,
+				6DA8A5772330185300044B5B /* ISProvisionManager.m in Sources */,
+				6D449FBA233A4D8C0098D3E3 /* IPASigner+Sign.m in Sources */,
+				6DA8A5742330178E00044B5B /* ISProvision.m in Sources */,
+				6DA8A56B2330169600044B5B /* IPASigner.m in Sources */,
+				6D449FB7233A4AD50098D3E3 /* NSArray+IPASigner.m in Sources */,
+				6D9D8343237D04C900350638 /* ISShellChmod.m in Sources */,
+				6D50987D235CA3B2006FE13B /* ISIPASigner.m in Sources */,
+				6D5701B2235801A400348DC1 /* ISEntitlements.m in Sources */,
+				6D944AA32359FCD1003252E1 /* ISInfoModifier.m in Sources */,
+				6DA8A58423301F8600044B5B /* ISShellMakeTemp.m in Sources */,
+				6DA8A55C2330142100044B5B /* main.m in Sources */,
+				6D9066D22351DCBB00104A19 /* MUPath+IPA.m in Sources */,
+				6DA8A57E233018B700044B5B /* ISShellPath.m in Sources */,
+				6D9066C92351D97E00104A19 /* ISSigner.m in Sources */,
+				6DA8A58D2330267200044B5B /* ISShellOtool.m in Sources */,
+				6DA8A57A2330185F00044B5B /* ISIdentityManager.m in Sources */,
+				6DC58238235DDD7D0071F758 /* IPASigner+Provision.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6DA8A55D2330142100044B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6DA8A55E2330142100044B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6DA8A5602330142100044B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 267E08FD43F672AEE112AA56 /* Pods-IPASigner.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "${TARGET_NAME}/PrefixHeader.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		6DA8A5612330142100044B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A2CA8DCB876828F327B938A /* Pods-IPASigner.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "${TARGET_NAME}/PrefixHeader.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DA8A5532330142100044B5B /* Build configuration list for PBXProject "IPASigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DA8A55D2330142100044B5B /* Debug */,
+				6DA8A55E2330142100044B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DA8A55F2330142100044B5B /* Build configuration list for PBXNativeTarget "IPASigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DA8A5602330142100044B5B /* Debug */,
+				6DA8A5612330142100044B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DA8A5502330142100044B5B /* Project object */;
+}

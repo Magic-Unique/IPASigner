@@ -1,0 +1,62 @@
+PODS:
+  - CommandLine (2.4.6):
+    - CommandLine/ANSI (= 2.4.6)
+    - CommandLine/Command (= 2.4.6)
+    - CommandLine/Interface (= 2.4.6)
+    - CommandLine/Launcher (= 2.4.6)
+    - CommandLine/Main (= 2.4.6)
+    - CommandLine/Tools (= 2.4.6)
+  - CommandLine/ANSI (2.4.6):
+    - CommandLine/Main
+    - CommandLine/Tools
+  - CommandLine/Command (2.4.6):
+    - CommandLine/ANSI
+    - CommandLine/Main
+  - CommandLine/Interface (2.4.6):
+    - CommandLine/ANSI
+    - CommandLine/Main
+  - CommandLine/Launcher (2.4.6):
+    - CommandLine/Main
+  - CommandLine/Main (2.4.6)
+  - CommandLine/Tools (2.4.6):
+    - CommandLine/Main
+  - libMachO (0.1.1)
+  - MachOKit (0.1.0):
+    - libMachO
+  - MobileProvision (1.0.1)
+  - MUFoundation/MUPath (0.0.5)
+  - SSZipArchive (2.2.2)
+
+DEPENDENCIES:
+  - CommandLine
+  - libMachO (from `./CocoaPods`)
+  - MachOKit (from `./CocoaPods`)
+  - MobileProvision
+  - MUFoundation/MUPath
+  - SSZipArchive
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MobileProvision
+    - MUFoundation
+    - SSZipArchive
+  trunk:
+    - CommandLine
+
+EXTERNAL SOURCES:
+  libMachO:
+    :path: "./CocoaPods"
+  MachOKit:
+    :path: "./CocoaPods"
+
+SPEC CHECKSUMS:
+  CommandLine: 4801986f6cd7fed64239ee5320be5e5c683edce3
+  libMachO: 5f72f66647bd685609d2d705b0a46a77d1d30cd1
+  MachOKit: 2c449f2d1aaffaf5e268c20a8107c0e93ab7e657
+  MobileProvision: b9b8166ac061b11c7440cc3881ac94ebc8dce58f
+  MUFoundation: d56f948f4c818f46a19ead18f38014e6330f40c3
+  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+
+PODFILE CHECKSUM: 906b2f37dd248d212727c10f47d14c806bed1876
+
+COCOAPODS: 1.8.4

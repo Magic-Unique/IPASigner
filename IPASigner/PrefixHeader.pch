@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  IPASigner
+//
+//  Created by 冷秋 on 2019/9/17.
+//  Copyright © 2019 Magic-Unique. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Foundation/Foundation.h>
+#import <CommandLine/CommandLine.h>
+#import <MUFoundation/MUPath.h>
+#import <MobileProvision/MobileProvision.h>
+#import <SSZipArchive/SSZipArchive.h>
+
+#import "NSArray+IPASigner.h"
+
+#endif /* PrefixHeader_pch */

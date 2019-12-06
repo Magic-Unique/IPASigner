@@ -8,6 +8,14 @@
 
 # 安装
 
+## 使用 Homebrew 安装
+
+```bash
+$ brew tap magic-unique/tap && brew install ipasigner
+```
+
+## 编译最新的可执行文件
+
 1. 使用 git 克隆或者下载这个仓库的代码
 2. 在根目录执行 `pod install`
 3. 用 Xcode 打开 *IPASigner.xcworkspace*

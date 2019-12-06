@@ -8,6 +8,14 @@ A simple, quickly code sign tool for *.ipa file.
 
 # Install
 
+## Homebrew
+
+```bash
+$ brew tap magic-unique/tap && brew install ipasigner
+```
+
+## Build
+
 1. clone or download this repo
 2. do`pod install`
 3. open *IPASigner.xcworkspace* with Xcode.app

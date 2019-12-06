@@ -176,7 +176,7 @@
 
 - (NSArray<MUPath *> *)loadedLibrariesWithExecuter:(MUPath *)executer {
     if (self.isFile && executer.isFile) {
-		NSMutableArray *links = [NSMutableArray array];
+		NSMutableSet *links = [NSMutableSet set];
 		@autoreleasepool {
 			NSMutableArray *loads = [NSMutableArray array];
 			NSMutableArray *rpaths = [NSMutableArray array];
@@ -213,9 +213,9 @@
 																						  withString:executable_path]];
 					if (path.isFile) {
 						if ([path.superpath isA:@"framework"]) {
-							[links addObject:path.superpath];
+							[links addObject:path.superpath.string];
 						} else {
-							[links addObject:path];
+							[links addObject:path.string];
 						}
 						[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
 					} else {
@@ -227,9 +227,9 @@
 																						  withString:loader_path]];
 					if (path.isFile) {
 						if ([path.superpath isA:@"framework"]) {
-							[links addObject:path.superpath];
+							[links addObject:path.superpath.string];
 						} else {
-							[links addObject:path];
+							[links addObject:path.string];
 						}
 						[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
 					} else {
@@ -245,9 +245,9 @@
 						MUPath *path = [MUPath pathWithString:temp];
 						if (path.isFile) {
 							if ([path.superpath isA:@"framework"]) {
-								[links addObject:path.superpath];
+								[links addObject:path.superpath.string];
 							} else {
-								[links addObject:path];
+								[links addObject:path.string];
 							}
 							[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
 							break;
@@ -255,9 +255,21 @@
 					}
 				}
 			}
-			
 		}
-		return links;
+		
+		NSMutableArray *_list = links.allObjects.mutableCopy;
+		NSString *bundle = executer.superpath.string;
+		for (NSUInteger i = 0; i < _list.count; i++) {
+			NSString *path = _list[i];
+			if (![path hasPrefix:bundle]) {
+				[_list removeObjectAtIndex:i--];
+				CLInfo(@"Ignore %@", path);
+			} else {
+				CLInfo(@"Add %@", path);
+//				_list[i] = [MUPath pathWithString:path];
+			}
+		}
+		return _list;
     }
     return nil;
 }

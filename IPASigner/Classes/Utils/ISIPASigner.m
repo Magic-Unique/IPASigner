@@ -92,6 +92,7 @@
 		[bundles addObject:app];
 		[bundles copy];
 	});
+	NSMutableSet *signedPath = [NSMutableSet set];
 	for (MUPath *appex in embeddedBundles) {
 		NSString *CFBundleIdentifier = appex.CFBundleIdentifier;
 		
@@ -131,13 +132,18 @@
 		MUPath *Frameworks = [appex subpathWithComponent:@"Frameworks"];
 		if (Frameworks.isDirectory) {
 			[Frameworks enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
-				[links addObject:content];
+				[links addObject:content.string];
 			}];
 		}
 		
-		[links.allObjects enumerateObjectsUsingBlock:^(MUPath *dylib, NSUInteger idx, BOOL * _Nonnull stop) {
+		[links.allObjects enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL * _Nonnull stop) {
+			MUPath *dylib = [MUPath pathWithString:path];
+			if ([signedPath containsObject:path]) {
+				return;
+			}
 			CLInfo(@"Sign %@", [dylib relativeStringToPath:PayloadPath]);
 			[signer sign:dylib];
+			[signedPath addObject:path];
 		}];
 		
 		

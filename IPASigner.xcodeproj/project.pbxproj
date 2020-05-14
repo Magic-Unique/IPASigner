@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A04D014677610568EF6F884 /* libPods-IPASigner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 122B660409D081930661DF69 /* libPods-IPASigner.a */; };
+		6D41DB80246D8E23008B59AE /* IPASigner+Modify.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D41DB7F246D8E23008B59AE /* IPASigner+Modify.m */; };
 		6D449FB7233A4AD50098D3E3 /* NSArray+IPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D449FB6233A4AD50098D3E3 /* NSArray+IPASigner.m */; };
 		6D449FBA233A4D8C0098D3E3 /* IPASigner+Sign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D449FB9233A4D8C0098D3E3 /* IPASigner+Sign.m */; };
 		6D50987D235CA3B2006FE13B /* ISIPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D50987C235CA3B2006FE13B /* ISIPASigner.m */; };
@@ -48,6 +49,8 @@
 		122B660409D081930661DF69 /* libPods-IPASigner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IPASigner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		267E08FD43F672AEE112AA56 /* Pods-IPASigner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IPASigner.debug.xcconfig"; path = "Target Support Files/Pods-IPASigner/Pods-IPASigner.debug.xcconfig"; sourceTree = "<group>"; };
 		6A2CA8DCB876828F327B938A /* Pods-IPASigner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IPASigner.release.xcconfig"; path = "Target Support Files/Pods-IPASigner/Pods-IPASigner.release.xcconfig"; sourceTree = "<group>"; };
+		6D41DB7E246D8E23008B59AE /* IPASigner+Modify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Modify.h"; sourceTree = "<group>"; };
+		6D41DB7F246D8E23008B59AE /* IPASigner+Modify.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Modify.m"; sourceTree = "<group>"; };
 		6D449FB5233A4AD50098D3E3 /* NSArray+IPASigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+IPASigner.h"; sourceTree = "<group>"; };
 		6D449FB6233A4AD50098D3E3 /* NSArray+IPASigner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IPASigner.m"; sourceTree = "<group>"; };
 		6D449FB8233A4D8C0098D3E3 /* IPASigner+Sign.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Sign.h"; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				6D449FB9233A4D8C0098D3E3 /* IPASigner+Sign.m */,
 				6D449FC2233A75600098D3E3 /* IPASigner+Resign.h */,
 				6D449FC3233A75600098D3E3 /* IPASigner+Resign.m */,
+				6D41DB7E246D8E23008B59AE /* IPASigner+Modify.h */,
+				6D41DB7F246D8E23008B59AE /* IPASigner+Modify.m */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				6D944AA32359FCD1003252E1 /* ISInfoModifier.m in Sources */,
 				6DA8A58423301F8600044B5B /* ISShellMakeTemp.m in Sources */,
 				6DA8A55C2330142100044B5B /* main.m in Sources */,
+				6D41DB80246D8E23008B59AE /* IPASigner+Modify.m in Sources */,
 				6D9066D22351DCBB00104A19 /* MUPath+IPA.m in Sources */,
 				6DA8A57E233018B700044B5B /* ISShellPath.m in Sources */,
 				6D9066C92351D97E00104A19 /* ISSigner.m in Sources */,

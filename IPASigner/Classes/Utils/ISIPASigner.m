@@ -85,72 +85,73 @@
 	}
 	
 	//	签名
-	NSArray *embeddedBundles = ({
-		NSMutableArray *bundles = [NSMutableArray array];
-		[bundles addObjectsFromArray:app.allPlugInApps];
-		[bundles addObjectsFromArray:app.allWatchApps];
-		[bundles addObject:app];
-		[bundles copy];
-	});
-	NSMutableSet *signedPath = [NSMutableSet set];
-	for (MUPath *appex in embeddedBundles) {
-		NSString *CFBundleIdentifier = appex.CFBundleIdentifier;
-		
-		ISProvision *provision = options.provisionForBundle(appex);
-		if (!provision) {
-			CLError(@"Can not sign %@ without provision", CFBundleIdentifier);
-			return NO;
-		}
-		
-		ISIdentity *identity = ({
-			ISIdentity *identity = nil;
-			NSArray *identities = ISGetSignableIdentityFromProvision(provision);
-			if (identities.count == 0) {
-				
-			} else if (identities.count == 1) {
-				identity = identities.firstObject;
-			} else {
-				options.identityForProvision(provision, identities);
-			}
-			identity;
+	if (!options.ignoreSign) {
+		NSArray *embeddedBundles = ({
+			NSMutableArray *bundles = [NSMutableArray array];
+			[bundles addObjectsFromArray:app.allPlugInApps];
+			[bundles addObjectsFromArray:app.allWatchApps];
+			[bundles addObject:app];
+			[bundles copy];
 		});
-		ISEntitlements *entitlements = options.entitlementsForBundle(appex);
-		
-		ISSigner *signer = [[ISSigner alloc] initWithIdentify:identity
-													provision:provision
-												 entitlements:entitlements];
-		
-		CLInfo(@"Begin Sign: %@", appex.lastPathComponent);
-		CLPushIndent();
-		MUPath *from = provision.path;
-		MUPath *to = [appex subpathWithComponent:@"embedded.mobileprovision"];
-		CLInfo(@"Embedded provision profile: %@", provision.provision.Name);
-		[from copyTo:to autoCover:YES];
-		
-		NSMutableSet *links = [NSMutableSet set];
-		[links addObjectsFromArray:appex.CFBundleExecutable.loadedLibraries];
-		MUPath *Frameworks = [appex subpathWithComponent:@"Frameworks"];
-		if (Frameworks.isDirectory) {
-			[Frameworks enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
-				[links addObject:content.string];
-			}];
-		}
-		
-		[links.allObjects enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL * _Nonnull stop) {
-			MUPath *dylib = [MUPath pathWithString:path];
-			if ([signedPath containsObject:path]) {
-				return;
+		NSMutableSet *signedPath = [NSMutableSet set];
+		for (MUPath *appex in embeddedBundles) {
+			NSString *CFBundleIdentifier = appex.CFBundleIdentifier;
+			
+			ISProvision *provision = options.provisionForBundle(appex);
+			if (!provision) {
+				CLError(@"Can not sign %@ without provision", CFBundleIdentifier);
+				return NO;
 			}
-			CLInfo(@"Sign %@", [dylib relativeStringToPath:PayloadPath]);
-			[signer sign:dylib];
-			[signedPath addObject:path];
-		}];
-		
-		
-		CLInfo(@"Sign %@", [appex relativeStringToPath:PayloadPath]);
-		ISChmod(appex.CFBundleExecutable.string, 777);
-		[signer sign:appex];
-		CLPopIndent();
+			
+			ISIdentity *identity = ({
+				ISIdentity *identity = nil;
+				NSArray *identities = ISGetSignableIdentityFromProvision(provision);
+				if (identities.count == 0) {
+					
+				} else if (identities.count == 1) {
+					identity = identities.firstObject;
+				} else {
+					options.identityForProvision(provision, identities);
+				}
+				identity;
+			});
+			ISEntitlements *entitlements = options.entitlementsForBundle(appex);
+			
+			ISSigner *signer = [[ISSigner alloc] initWithIdentify:identity
+														provision:provision
+													 entitlements:entitlements];
+			
+			CLInfo(@"Begin Sign: %@", appex.lastPathComponent);
+			CLPushIndent();
+			MUPath *from = provision.path;
+			MUPath *to = [appex subpathWithComponent:@"embedded.mobileprovision"];
+			CLInfo(@"Embedded provision profile: %@", provision.provision.Name);
+			[from copyTo:to autoCover:YES];
+			
+			NSMutableSet *links = [NSMutableSet set];
+			[links addObjectsFromArray:appex.CFBundleExecutable.loadedLibraries];
+			MUPath *Frameworks = [appex subpathWithComponent:@"Frameworks"];
+			if (Frameworks.isDirectory) {
+				[Frameworks enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
+					[links addObject:content.string];
+				}];
+			}
+			
+			[links.allObjects enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL * _Nonnull stop) {
+				MUPath *dylib = [MUPath pathWithString:path];
+				if ([signedPath containsObject:path]) {
+					return;
+				}
+				CLInfo(@"Sign %@", [dylib relativeStringToPath:PayloadPath]);
+				[signer sign:dylib];
+				[signedPath addObject:path];
+			}];
+			
+			CLInfo(@"Sign %@", [appex relativeStringToPath:PayloadPath]);
+			ISChmod(appex.CFBundleExecutable.string, 777);
+			[signer sign:appex];
+			CLPopIndent();
+		}
 	}
 	
 	// 压缩

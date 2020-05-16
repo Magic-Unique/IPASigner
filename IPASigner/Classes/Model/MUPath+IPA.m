@@ -263,10 +263,9 @@
 			NSString *path = _list[i];
 			if (![path hasPrefix:bundle]) {
 				[_list removeObjectAtIndex:i--];
-				CLInfo(@"Ignore %@", path);
+				CLVerbose(@"Ignore %@", path);
 			} else {
-				CLInfo(@"Add %@", path);
-//				_list[i] = [MUPath pathWithString:path];
+				CLVerbose(@"Add %@", path);
 			}
 		}
 		return _list;

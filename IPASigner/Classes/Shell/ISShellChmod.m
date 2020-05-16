@@ -9,9 +9,8 @@
 #import "ISShellChmod.h"
 
 void ISChmod(NSString *path, NSUInteger mode) {
-	NSString *result = ISShellLaunch(nil, IS_BIN_CHMOD, ^(NSMutableArray *arguments) {
+	__unused NSString *result = ISShellLaunch(nil, IS_BIN_CHMOD, ^(NSMutableArray *arguments) {
 		[arguments addObject:@(mode).stringValue];
 		[arguments addObject:path];
 	});
-	NSLog(@"%@", result);
 }

@@ -15,7 +15,15 @@
 + (void)__init_resign {
 	CLCommand *resign = [[CLCommand mainCommand] defineSubcommand:@"resign"];
 	resign.explain = @"Sign IPA with custom mode.";
-	resign.setQuery(@"profile").setAbbr('p').require().setExample(@"path|name|uuid|bundleid").setExplain(@"Choose a provision profile.");
+	
+	CLQuery *profile = resign.setQuery(@"profile").setAbbr('p').optional().setExample(@"path|name|uuid|bundleid").setExplain(@"Choose a provision profile.");
+	NSString *defaultProfile = [NSUserDefaults standardUserDefaults][IS_CONFIG_KEY_default_profile];
+	if (defaultProfile) {
+		profile.optional().setDefaultValue(defaultProfile);
+	} else {
+		profile.require();
+	}
+	
 	[self addGeneralArgumentsToCommand:resign];
 	[resign handleProcess:^int(CLCommand * _Nonnull command, CLProcess * _Nonnull process) {
 		MUPath *input = [self inputPathFromProcess:process];

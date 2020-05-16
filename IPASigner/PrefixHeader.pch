@@ -16,5 +16,15 @@
 #import <SSZipArchive/SSZipArchive.h>
 
 #import "NSArray+IPASigner.h"
+#import "NSUserDefaults+IPASigner.h"
+
+#define ISGetConfig(class, key) ((class *)[[NSUserDefaults standardUserDefaults] objectForKey:key])
+#define ISSetConfig(key, value) ([[NSUserDefaults standardUserDefaults] setValue:value forKey:key])
+
+#define ISSelStr(sel) NSStringFromSelector(@selector(sel))
+
+#define IS_CONFIG_KEY_default_profile @"default-profile"
+
+#define IS_CONFIG_ALL_KEYS @[IS_CONFIG_KEY_default_profile]
 
 #endif /* PrefixHeader_pch */

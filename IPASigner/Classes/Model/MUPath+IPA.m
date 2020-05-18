@@ -222,7 +222,7 @@
 						CLError(@"The file is not exist 1: %@", path.string);
 					}
 				}
-				else if ([load hasPrefix:@"loader_path"]) {
+				else if ([load hasPrefix:@"@loader_path"]) {
 					MUPath *path = [MUPath pathWithString:[load stringByReplacingOccurrencesOfString:@"@loader_path"
 																						  withString:loader_path]];
 					if (path.isFile) {

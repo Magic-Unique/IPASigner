@@ -39,4 +39,6 @@
 
 - (NSArray<MUPath *> *)loadedLibrariesWithExecuter:(MUPath *)executer;
 
+- (void)addSupportDevices:(NSArray<NSString *> *)supportDevices;
+
 @end

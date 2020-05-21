@@ -84,6 +84,10 @@
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:NO];
 	}
 	
+	if (options.addSupportDevices.count) {
+		[ISInfoModifier addBundle:app supportDevices:options.addSupportDevices];
+	}
+	
 	//	签名
 	if (!options.ignoreSign) {
 		NSArray *embeddedBundles = ({

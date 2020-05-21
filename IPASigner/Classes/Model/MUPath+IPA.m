@@ -84,6 +84,25 @@
 	}
 }
 
+- (void)addSupportDevices:(NSArray<NSString *> *)supportDevices {
+	MUPath *infoPath = self.infoPath;
+	if (infoPath) {
+		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:infoPath.string];
+		NSMutableArray *UISupportedDevices = info[@"UISupportedDevices"];
+		if (UISupportedDevices) {
+			CLInfo(@"Add support devices %@ into %@", supportDevices, UISupportedDevices);
+			for (NSString *device in supportDevices) {
+				if (![UISupportedDevices containsObject:device]) {
+					[UISupportedDevices addObject:device];
+				}
+			}
+			[UISupportedDevices sortUsingSelector:@selector(compare:)];
+			CLInfo(@"Add completed: %@", UISupportedDevices);
+			[info writeToFile:infoPath.string atomically:YES];
+		}
+	}
+}
+
 - (BOOL)isApp {
     return self.isDirectory && [self isA:@"app"];
 }

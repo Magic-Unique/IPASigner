@@ -14,6 +14,7 @@
 	command.setQuery(@"bundle-id").optional().setExample(@"com.xxx.xxx").setExplain(@"Modify CFBundleIdentifier");
 	command.setQuery(@"bundle-version").optional().setExample(@"1.0.0").setExplain(@"Modify CFBundleVersion");
 	command.setQuery(@"build-version").optional().setExample(@"1000").setExplain(@"Modify CFBundleShortVersionString");
+	command.setQuery(@"support-device").optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExample(@"iPhone11,6").setExplain(@"Add UISupportDevices");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
 	
@@ -34,6 +35,7 @@
 	options.CFBundleIdentifier = process.queries[@"bundle-id"];
 	options.CFBundleVersion = process.queries[@"bundle-version"];
 	options.CFBundleShortVersionString = process.queries[@"build-version"];
+	options.addSupportDevices = process.queries[@"support-device"];
 	options.deletePlugIns = [process flag:@"rm-plugins"];
 	options.deleteWatches = [process flag:@"rm-watches"];
 	options.deleteExtensions = [process flag:@"rm-ext"];

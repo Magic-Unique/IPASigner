@@ -18,4 +18,6 @@
 
 + (void)setBundle:(MUPath *)bundle bundleVersion:(NSString *)version;
 
++ (void)addBundle:(MUPath *)bundle supportDevices:(NSArray *)devices;
+
 @end

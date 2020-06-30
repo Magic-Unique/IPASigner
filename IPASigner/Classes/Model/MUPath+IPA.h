@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong, readonly) MUPath *CFBundleExecutable;
 
+@property (nonatomic, assign, readonly) BOOL isPayload;
 @property (nonatomic, assign, readonly) BOOL isApp;
 @property (nonatomic, assign, readonly) BOOL isAppex;
 @property (nonatomic, assign, readonly) BOOL isFramework;
@@ -23,6 +24,8 @@
 
 @property (nonatomic, strong, readonly) MUPath *pluginsDirectory;
 @property (nonatomic, strong, readonly) MUPath *watchDirectory;
+
+@property (nonatomic, strong, readonly) MUPath *payloadAppPath;
 
 @property (nonatomic, strong, readonly) NSArray<MUPath *> *allPlugInApps;
 @property (nonatomic, strong, readonly) NSArray<MUPath *> *allWatchApps;
@@ -40,5 +43,7 @@
 - (NSArray<MUPath *> *)loadedLibrariesWithExecuter:(MUPath *)executer;
 
 - (void)addSupportDevices:(NSArray<NSString *> *)supportDevices;
+
+- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover;
 
 @end

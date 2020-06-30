@@ -103,6 +103,10 @@
 	}
 }
 
+- (BOOL)isPayload {
+	return self.isDirectory && [self is:@"Payload"];
+}
+
 - (BOOL)isApp {
     return self.isDirectory && [self isA:@"app"];
 }
@@ -139,6 +143,15 @@
         return path;
     }
     return nil;
+}
+
+- (MUPath *)payloadAppPath {
+	if (self.isPayload) {
+		return [self contentsWithFilter:^BOOL(MUPath *content) {
+			return content.isApp;
+		}].firstObject;
+	}
+	return nil;
 }
 
 - (NSArray<MUPath *> *)allPlugInApps {
@@ -290,6 +303,40 @@
 		return _list;
     }
     return nil;
+}
+
+- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover {
+	
+#define Break(b) do { NSError *error = b; if (error) return error; } while (NO);
+	
+	if (!self.isExist || !path.isExist) {
+		return [self copyTo:path autoCover:cover];
+	}
+	
+	if (self.isFile && path.isFile && cover) {
+		Break([path remove]);
+		Break([self copyTo:path autoCover:YES]);
+	}
+	
+	if (self.isFile && path.isDirectory && cover) {
+		Break([path remove]);
+		Break([self copyTo:path autoCover:YES]);
+	}
+	
+	if (self.isDirectory && self.isFile && cover) {
+		Break([path remove]);
+		Break([self copyTo:path autoCover:YES]);
+	}
+	
+	if (self.isDirectory && self.isDirectory) {
+		for (MUPath *item in self.contents) {
+			NSString *name = item.lastPathComponent;
+			MUPath *target = [path subpathWithComponent:name];
+			Break([item mergeTo:target autoCover:cover]);
+		}
+	}
+	
+	return nil;
 }
 
 @end

@@ -141,6 +141,17 @@
     return nil;
 }
 
+- (MUPath *)watchPlaceholderDirectory {
+    if (!self.isApp) {
+        return nil;
+    }
+    MUPath *path = [self subpathWithComponent:@"com.apple.WatchPlaceholder"];
+	if (path.isDirectory) {
+		return path;
+	}
+    return nil;
+}
+
 - (NSArray<MUPath *> *)allPlugInApps {
 	if (!self.isApp) {
 		return nil;
@@ -162,17 +173,18 @@
 	if (!self.isApp) {
 		return nil;
 	}
-    MUPath *Watch = self.watchDirectory;
-	if (Watch.isDirectory) {
-		NSMutableArray *_watches = [NSMutableArray array];
-		[Watch enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
-			if (content.isApp) {
-				[_watches addObject:content];
-			}
-		}];
-		return [_watches copy];
-	}
-	return nil;
+	NSMutableArray *_watches = [NSMutableArray array];
+	[self.watchDirectory enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
+		if (content.isApp) {
+			[_watches addObject:content];
+		}
+	}];
+	[self.watchPlaceholderDirectory enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
+		if (content.isApp) {
+			[_watches addObject:content];
+		}
+	}];
+	return [_watches copy];
 }
 
 - (NSArray<NSString *> *)allBundleIdentifiers {

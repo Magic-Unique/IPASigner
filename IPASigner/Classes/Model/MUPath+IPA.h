@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong, readonly) MUPath *pluginsDirectory;
 @property (nonatomic, strong, readonly) MUPath *watchDirectory;
+@property (nonatomic, strong, readonly) MUPath *watchPlaceholderDirectory;
 
 @property (nonatomic, strong, readonly) NSArray<MUPath *> *allPlugInApps;
 @property (nonatomic, strong, readonly) NSArray<MUPath *> *allWatchApps;

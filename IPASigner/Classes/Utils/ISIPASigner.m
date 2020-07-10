@@ -54,6 +54,7 @@
 	}
 	if (options.deleteWatches || options.deleteExtensions) {
 		[app.watchDirectory remove];
+		[app.watchPlaceholderDirectory remove];
 	}
 	
 	if (options.CFBundleIdentifier) {

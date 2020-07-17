@@ -25,7 +25,7 @@
 @property (nonatomic, assign) BOOL enableiTunesFileSharing;
 @property (nonatomic, assign) BOOL disableiTunesFileSharing;
 
-@property (nonatomic, strong) NSArray<NSString *> *addSupportDevices;
+@property (nonatomic, assign) BOOL supportAllDevices;
 
 @property (nonatomic, assign) BOOL ignoreSign;
 

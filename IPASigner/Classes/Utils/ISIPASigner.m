@@ -84,10 +84,8 @@
 	} else if (options.disableiTunesFileSharing) {
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:NO];
 	}
-	
-	if (options.addSupportDevices.count) {
-		[ISInfoModifier addBundle:app supportDevices:options.addSupportDevices];
-	}
+
+	[ISInfoModifier setBundle:app supportAllDevices:YES];
 	
 	//	签名
 	if (!options.ignoreSign) {

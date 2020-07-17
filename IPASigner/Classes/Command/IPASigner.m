@@ -11,20 +11,18 @@
 @implementation IPASigner
 
 + (void)addGeneralArgumentsToCommand:(CLCommand *)command {
-	command.setQuery(@"bundle-id").optional().setExample(@"com.xxx.xxx").setExplain(@"Modify CFBundleIdentifier");
+	command.setQuery(@"bundle-id").setAbbr('i').optional().setExample(@"com.xxx.xxx").setExplain(@"Modify CFBundleIdentifier");
 	command.setQuery(@"bundle-version").optional().setExample(@"1.0.0").setExplain(@"Modify CFBundleVersion");
 	command.setQuery(@"build-version").optional().setExample(@"1000").setExplain(@"Modify CFBundleShortVersionString");
-	command.setQuery(@"support-device").optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExample(@"iPhone11,6").setExplain(@"Add UISupportDevices");
+	command.setFlag(@"support-all-devices").setAbbr('a').setExplain(@"Remove Info's value for keyed UISupportDevices.");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
 	
 	command.setFlag(@"rm-plugins").setExplain(@"Delete all app extensions.");
 	command.setFlag(@"rm-watches").setExplain(@"Delete all watch apps.");
-	command.setFlag(@"rm-ext").setExplain(@"Delete all watch apps and plugins.");
+	command.setFlag(@"rm-ext").setAbbr('r').setExplain(@"Delete all watch apps and plugins.");
 	
-	command.setQuery(@"entitlements").optional()
-	.setMultiType(CLQueryMultiTypeMoreKeyValue)
-	.setExplain(@"Sign with entitlements, bundle_id=entitlement_path");
+	command.setQuery(@"entitlements").setAbbr('e').optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExplain(@"Sign with entitlements, bundle_id=entitlement_path");
 	
 	command.addRequirePath(@"input").setExample(@"/path/to/input.ipa").setExplain(@"Input ipa path.");
 	command.addOptionalPath(@"output").setExample(@"/path/to/output.ipa").setExplain(@"Output ipa path.");
@@ -35,10 +33,10 @@
 	options.CFBundleIdentifier = process.queries[@"bundle-id"];
 	options.CFBundleVersion = process.queries[@"bundle-version"];
 	options.CFBundleShortVersionString = process.queries[@"build-version"];
-	options.addSupportDevices = process.queries[@"support-device"];
 	options.deletePlugIns = [process flag:@"rm-plugins"];
 	options.deleteWatches = [process flag:@"rm-watches"];
 	options.deleteExtensions = [process flag:@"rm-ext"];
+	options.supportAllDevices = [process flag:@"support-all-devices"];
 	
 	if ([process flag:@"file-sharing"] && [process flag:@"no-file-sharing"]) {
 		CLError(@"You must type in one of --file-sharing and --no-file-sharing, or without anyone.");

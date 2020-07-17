@@ -16,12 +16,13 @@
 	CLCommand *resign = [[CLCommand mainCommand] defineSubcommand:@"resign"];
 	resign.explain = @"Sign IPA with custom mode.";
 	
-	CLQuery *profile = resign.setQuery(@"profile").setAbbr('p').optional().setExample(@"path|name|uuid|bundleid").setExplain(@"Choose a provision profile.");
 	NSString *defaultProfile = [NSUserDefaults standardUserDefaults][IS_CONFIG_KEY_default_profile];
+	CLQuery *profile = resign.setQuery(@"profile").setAbbr('p').setExample(@"path|name|uuid|bundleid");
 	if (defaultProfile) {
-		profile.optional().setDefaultValue(defaultProfile);
+		NSString *explain = [NSString stringWithFormat:@"Choose a provision profile, default is `%@`.", defaultProfile];
+		profile.optional().setDefaultValue(defaultProfile).setExplain(explain);
 	} else {
-		profile.require();
+		profile.require().setExplain(@"Choose a provision profile.");
 	}
 	
 	[self addGeneralArgumentsToCommand:resign];

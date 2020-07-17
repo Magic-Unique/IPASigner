@@ -70,8 +70,10 @@
 	}
 }
 
-+ (void)addBundle:(MUPath *)bundle supportDevices:(NSArray *)devices {
-	[bundle addSupportDevices:devices];
++ (void)setBundle:(MUPath *)bundle supportAllDevices:(BOOL)supportAllDevices {
+	if (supportAllDevices) {
+		[bundle supportAllDevices];
+	}
 }
 
 @end

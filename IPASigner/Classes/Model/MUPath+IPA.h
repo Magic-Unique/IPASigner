@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong, readonly) MUPath *CFBundleExecutable;
 
+@property (nonatomic, assign, readonly) BOOL isIPA;
 @property (nonatomic, assign, readonly) BOOL isPayload;
 @property (nonatomic, assign, readonly) BOOL isApp;
 @property (nonatomic, assign, readonly) BOOL isAppex;
@@ -44,6 +45,6 @@
 
 - (void)addSupportDevices:(NSArray<NSString *> *)supportDevices;
 
-- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover;
+- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover step:(void (^)(MUPath *from, MUPath *to))step;
 
 @end

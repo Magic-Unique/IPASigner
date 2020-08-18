@@ -103,6 +103,10 @@
 	}
 }
 
+- (BOOL)isIPA {
+	return self.isFile && [self isA:@"ipa"];
+}
+
 - (BOOL)isPayload {
 	return self.isDirectory && [self is:@"Payload"];
 }
@@ -305,25 +309,33 @@
     return nil;
 }
 
-- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover {
+- (NSError *)mergeTo:(MUPath *)path autoCover:(BOOL)cover step:(void (^)(MUPath *, MUPath *))step {
 	
 #define Break(b) do { NSError *error = b; if (error) return error; } while (NO);
 	
+	if (!step) {
+		step = ^(MUPath *from, MUPath *to) {};
+	}
+	
 	if (!self.isExist || !path.isExist) {
+		step(self, path);
 		return [self copyTo:path autoCover:cover];
 	}
 	
 	if (self.isFile && path.isFile && cover) {
+		step(self, path);
 		Break([path remove]);
 		Break([self copyTo:path autoCover:YES]);
 	}
 	
 	if (self.isFile && path.isDirectory && cover) {
+		step(self, path);
 		Break([path remove]);
 		Break([self copyTo:path autoCover:YES]);
 	}
 	
 	if (self.isDirectory && self.isFile && cover) {
+		step(self, path);
 		Break([path remove]);
 		Break([self copyTo:path autoCover:YES]);
 	}
@@ -332,7 +344,7 @@
 		for (MUPath *item in self.contents) {
 			NSString *name = item.lastPathComponent;
 			MUPath *target = [path subpathWithComponent:name];
-			Break([item mergeTo:target autoCover:cover]);
+			Break([item mergeTo:target autoCover:cover step:step]);
 		}
 	}
 	

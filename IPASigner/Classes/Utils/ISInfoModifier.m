@@ -76,4 +76,28 @@
 	}
 }
 
++ (void)setBundle:(MUPath *)bundle bundleDisplayName:(NSString *)bundleDisplayName {
+	CLInfo(@"%@ = %@", bundle.lastPathComponent, bundleDisplayName);
+	bundle.CFBundleDisplayName = bundleDisplayName;
+	[bundle enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
+		if (!content.isDirectory || ![content isA:@"lproj"]) {
+			return;
+		}
+		
+		MUPath *InfoPlist_string = [content subpathWithComponent:@"InfoPlist.strings"];
+		if (!InfoPlist_string.isFile) {
+			return;
+		}
+		
+		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:InfoPlist_string.string];
+		if (!info[@"CFBundleDisplayName"]) {
+			return;
+		}
+		
+		CLInfo(@"%@ = %@", content.lastPathComponent, bundleDisplayName);
+		info[@"CFBundleDisplayName"] = bundleDisplayName;
+		[info writeToFile:InfoPlist_string.string atomically:YES];
+	}];
+}
+
 @end

@@ -20,4 +20,6 @@
 
 + (void)setBundle:(MUPath *)bundle supportAllDevices:(BOOL)supportAllDevices;
 
++ (void)setBundle:(MUPath *)bundle bundleDisplayName:(NSString *)bundleDisplayName;
+
 @end

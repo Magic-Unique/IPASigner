@@ -71,6 +71,14 @@
 	[self setInfoObject:CFBundleVersion forKey:@"CFBundleVersion"];
 }
 
+- (NSString *)CFBundleDisplayName {
+	return [self infoObjectForKey:@"CFBundleDisplayName"];
+}
+
+- (void)setCFBundleDisplayName:(NSString *)CFBundleDisplayName {
+	[self setInfoObject:CFBundleDisplayName forKey:@"CFBundleDisplayName"];
+}
+
 - (BOOL)UIFileSharingEnabled {
 	return [self.info[@"UIFileSharingEnabled"] boolValue];
 }

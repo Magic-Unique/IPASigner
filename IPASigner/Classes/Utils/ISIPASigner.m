@@ -78,6 +78,13 @@
 		CLPopIndent();
 	}
 	
+	if (options.CFBundleDisplayName) {
+		CLInfo(@"Modify CFBundleDisplayName:");
+		CLPushIndent();
+		[ISInfoModifier setBundle:app bundleDisplayName:options.CFBundleDisplayName];
+		CLPopIndent();
+	}
+	
 	if (options.enableiTunesFileSharing) {
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:YES];
 		app.UIFileSharingEnabled = YES;

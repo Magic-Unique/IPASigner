@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSString *CFBundleIdentifier;
 @property (nonatomic, strong) NSString *CFBundleShortVersionString;
 @property (nonatomic, strong) NSString *CFBundleVersion;
+@property (nonatomic, strong) NSString *CFBundleDisplayName;
 
 @property (nonatomic, assign) BOOL UIFileSharingEnabled;
 

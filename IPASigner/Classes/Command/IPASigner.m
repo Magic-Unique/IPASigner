@@ -14,6 +14,7 @@
 	command.setQuery(@"bundle-id").setAbbr('i').optional().setExample(@"com.xxx.xxx").setExplain(@"Modify CFBundleIdentifier");
 	command.setQuery(@"bundle-version").optional().setExample(@"1.0.0").setExplain(@"Modify CFBundleVersion");
 	command.setQuery(@"build-version").optional().setExample(@"1000").setExplain(@"Modify CFBundleShortVersionString");
+	command.setQuery(@"bundle-display-name").optional().setExample(@"NAME").setExplain(@"Modify CFBundleDisplayName");
 	command.setFlag(@"support-all-devices").setAbbr('a').setExplain(@"Remove Info's value for keyed UISupportDevices.");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
@@ -32,6 +33,7 @@
     ISIPASignerOptions *options = [ISIPASignerOptions new];
 	options.CFBundleIdentifier = process.queries[@"bundle-id"];
 	options.CFBundleVersion = process.queries[@"bundle-version"];
+	options.CFBundleDisplayName = process.queries[@"bundle-display-name"];
 	options.CFBundleShortVersionString = process.queries[@"build-version"];
 	options.deletePlugIns = [process flag:@"rm-plugins"];
 	options.deleteWatches = [process flag:@"rm-watches"];

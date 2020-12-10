@@ -17,6 +17,7 @@
 
 @property (nonatomic, copy) NSString *CFBundleShortVersionString;
 @property (nonatomic, copy) NSString *CFBundleVersion;
+@property (nonatomic, copy) NSString *CFBundleDisplayName;
 
 @property (nonatomic, assign) BOOL deletePlugIns;
 @property (nonatomic, assign) BOOL deleteWatches;

@@ -230,7 +230,10 @@
 				}
 				else if ([loadCommand isKindOfClass:[MKLCRPath class]]) {
 					MKLCRPath *rpath = (MKLCRPath *)loadCommand;
-					[rpaths addObject:rpath.path.string];
+					NSString *path = rpath.path.string;
+					if (![path hasPrefix:@"/"]) { // Ignore system rpath
+						[rpaths addObject:path];
+					}
 				}
 			}
 			

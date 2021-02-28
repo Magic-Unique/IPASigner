@@ -175,6 +175,10 @@ _mk_internal const char * const AssociatedDescription = "AssociatedDescription";
         Class *classes = objc_copyClassList(&classCount);
         
         for (unsigned int i=0; i<classCount; i++) {
+            NSString *name = [NSString stringWithCString:class_getName(classes[i]) encoding:NSUTF8StringEncoding];
+            if (![name hasPrefix:@"MK"]) {
+                continue;
+            }
             if (class_getClassMethod(classes[i], @selector(isSubclassOfClass:)) == NULL)
                 continue;
             

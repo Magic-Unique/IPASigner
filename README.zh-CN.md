@@ -4,29 +4,15 @@
 
 [English](./README.md)
 
-> IPASigner 使用 [CommandLine](https://github.com/Magic-Unique/CommandLine) 来解析命令行工具和生成参数帮助信息
+> IPASigner 使用 [CommandLine](https://github.com/Magic-Unique/CommandLine) 来解析参数和生成帮助信息
 
 # 安装
-
-## 使用 Homebrew 安装
-
-```bash
-$ brew tap magic-unique/tap && brew install ipasigner
-```
-
-## 编译最新的可执行文件
 
 1. 使用 git 克隆或者下载这个仓库的代码
 2. 在根目录执行 `pod install`
 3. 用 Xcode 打开 *IPASigner.xcworkspace*
 4. 选择 **IPASigner (Release)** scheme 然后编译
-5. 执行 `ipasigner` 获取帮助信息
-
-```bash
-$ ipasigner
-```
-
-你会得到：
+5. 执行 `ipasigner`，你会得到：
 
 ```
 Usage:
@@ -51,6 +37,12 @@ Options:
 ```
 
 当你看见这些信息时，意味着命令行工具已经安装在 */usr/local/bin* 目录下.
+
+# 卸载
+
+```shell
+$ rm /usr/local/bin/ipasigner
+```
 
 # 使用
 

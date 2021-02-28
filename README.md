@@ -4,29 +4,15 @@ A simple, quickly code sign tool for *.ipa file.
 
 [中文](./README.zh-CN.md)
 
-> IPASigner use [CommandLine](https://github.com/Magic-Unique/CommandLine) to parse command line arguments and print help banner.
+> IPASigner use [CommandLine](https://github.com/Magic-Unique/CommandLine) to parse arguments and print help banner.
 
 # Install
 
-## Homebrew
-
-```bash
-$ brew tap magic-unique/tap && brew install ipasigner
-```
-
-## Build
-
 1. clone or download this repo
-2. do`pod install`
+2. do`$ pod install`
 3. open *IPASigner.xcworkspace* with Xcode.app
 4. Select **IPASigner (Release)** scheme and build.
-5. do `ipasigner`
-
-```bash
-$ ipasigner
-```
-
-You will get:
+5. do `$ ipasigner`, You will get:
 
 ```
 Usage:
@@ -51,6 +37,12 @@ Options:
 ```
 
 It's meaning that `ipasigner` has be installed in */usr/local/bin*.
+
+# Uninstall
+
+```shell
+$ rm /usr/local/bin/ipasigner
+```
 
 # Usage
 
@@ -115,7 +107,6 @@ You can modify bundle id with argument `--bundle-id`. Attention:
 
 1. It will search profile with new bundle id
 2. It will modify App Extensions, Watch Apps bundle id in the mean time, And search profile with new bundle id.
-
 
 Such as：
 

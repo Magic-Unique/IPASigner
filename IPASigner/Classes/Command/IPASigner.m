@@ -18,6 +18,7 @@
 	command.setFlag(@"support-all-devices").setAbbr('a').setExplain(@"Remove Info's value for keyed UISupportDevices.");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
+	command.setFlag(@"fix-icons").setExplain(@"Fix icons-losing on high devices.");
 	
 	command.setFlag(@"rm-plugins").setExplain(@"Delete all app extensions.");
 	command.setFlag(@"rm-watches").setExplain(@"Delete all watch apps.");
@@ -39,6 +40,7 @@
 	options.deleteWatches = [process flag:@"rm-watches"];
 	options.deleteExtensions = [process flag:@"rm-ext"];
 	options.supportAllDevices = [process flag:@"support-all-devices"];
+	options.fixIcons = [process flag:@"fix-icons"];
 	
 	if ([process flag:@"file-sharing"] && [process flag:@"no-file-sharing"]) {
 		CLError(@"You must type in one of --file-sharing and --no-file-sharing, or without anyone.");

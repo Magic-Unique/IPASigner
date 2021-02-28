@@ -43,4 +43,6 @@
 
 - (void)supportAllDevices;
 
+- (void)fixIcons;
+
 @end

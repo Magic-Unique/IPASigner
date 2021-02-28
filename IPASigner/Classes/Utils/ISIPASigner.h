@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL enableiTunesFileSharing;
 @property (nonatomic, assign) BOOL disableiTunesFileSharing;
 
+@property (nonatomic, assign) BOOL fixIcons;
+
 @property (nonatomic, assign) BOOL supportAllDevices;
 
 @property (nonatomic, assign) BOOL ignoreSign;

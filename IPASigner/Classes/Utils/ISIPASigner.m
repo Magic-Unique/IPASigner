@@ -91,6 +91,11 @@
 	} else if (options.disableiTunesFileSharing) {
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:NO];
 	}
+	
+	if (options.fixIcons) {
+		CLInfo(@"Fix icons...");
+		[app fixIcons];
+	}
 
 	[ISInfoModifier setBundle:app supportAllDevices:YES];
 	

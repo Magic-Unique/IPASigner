@@ -35,6 +35,7 @@
 @property (nonatomic, copy) ISProvision *(^provisionForBundle)(MUPath *bundle);
 
 @property (nonatomic, copy) ISEntitlements *(^entitlementsForBundle)(MUPath *bundle);
+@property (nonatomic, copy) NSString *getTaskAllow;
 
 @property (nonatomic, copy) ISIdentity *(^identityForProvision)(ISProvision *provision, NSArray<ISIdentity *> *identities);
 

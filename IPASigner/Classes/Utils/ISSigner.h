@@ -12,6 +12,12 @@
 #import "ISProvision.h"
 #import "ISEntitlements.h"
 
+typedef NS_ENUM(NSUInteger, ISSignerEntitlementGetTaskAllow) {
+	ISSignerEntitlementGetTaskAllowDefault,
+	ISSignerEntitlementGetTaskAllowEnable,
+	ISSignerEntitlementGetTaskAllowDisable,
+};
+
 @interface ISSigner : NSObject
 
 @property (nonatomic, copy, readonly) ISIdentity *identity;
@@ -20,7 +26,7 @@
 
 @property (nonatomic, copy, readonly) ISEntitlements *entitlements;
 
-@property (nonatomic, assign, readonly) BOOL signable;
+@property (nonatomic, assign) ISSignerEntitlementGetTaskAllow getTaskAllow;
 
 - (instancetype)initWithIdentify:(ISIdentity *)identity
 					   provision:(ISProvision *)provision

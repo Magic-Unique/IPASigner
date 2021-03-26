@@ -135,6 +135,11 @@
 			ISSigner *signer = [[ISSigner alloc] initWithIdentify:identity
 														provision:provision
 													 entitlements:entitlements];
+			if ([options.getTaskAllow isEqualToString:@"0"]) {
+				signer.getTaskAllow = ISSignerEntitlementGetTaskAllowDisable;
+			} else if ([options.getTaskAllow isEqualToString:@"1"]) {
+				signer.getTaskAllow = ISSignerEntitlementGetTaskAllowEnable;
+			}
 			
 			CLInfo(@"Begin Sign: %@", appex.lastPathComponent);
 			CLPushIndent();

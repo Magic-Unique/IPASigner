@@ -25,6 +25,7 @@
 	command.setFlag(@"rm-ext").setAbbr('r').setExplain(@"Delete all watch apps and plugins.");
 	
 	command.setQuery(@"entitlements").setAbbr('e').optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExplain(@"Sign with entitlements, bundle_id=entitlement_path");
+	command.setQuery(@"get-task-allow").setAbbr('D').optional().setExample(@"1|0").setExplain(@"Modify `get-task-allow` in entitlements.");
 	
 	command.addRequirePath(@"input").setExample(@"/path/to/input.ipa").setExplain(@"Input ipa path.");
 	command.addOptionalPath(@"output").setExample(@"/path/to/output.ipa").setExplain(@"Output ipa path.");
@@ -41,6 +42,7 @@
 	options.deleteExtensions = [process flag:@"rm-ext"];
 	options.supportAllDevices = [process flag:@"support-all-devices"];
 	options.fixIcons = [process flag:@"fix-icons"];
+	options.getTaskAllow = process.queries[@"get-task-allow"];
 	
 	if ([process flag:@"file-sharing"] && [process flag:@"no-file-sharing"]) {
 		CLError(@"You must type in one of --file-sharing and --no-file-sharing, or without anyone.");

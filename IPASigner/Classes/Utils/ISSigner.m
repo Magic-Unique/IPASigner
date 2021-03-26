@@ -74,9 +74,18 @@
 	ISEntitlements *entitlements = self.entitlements;
 	if (self.autoGenEntitlements) {
 		NSDictionary *appEntitlements = ISCodesignDisplayEntitlements(appPath.string);
-		NSDictionary *_entitlements = [self __compineProvisionEntitlements:self.entitlements.entitlements
-													   withAppEntitlements:appEntitlements];
-		entitlements = [ISEntitlements entitlementsWithEntitlements:_entitlements];
+		NSDictionary *JSON = [self __compineProvisionEntitlements:self.entitlements.entitlements
+											  withAppEntitlements:appEntitlements];
+		entitlements = [ISEntitlements entitlementsWithEntitlements:JSON];
+	}
+	if (self.getTaskAllow != ISSignerEntitlementGetTaskAllowDefault) {
+		NSMutableDictionary *JSON = [entitlements.entitlements mutableCopy];
+		if (self.getTaskAllow == ISSignerEntitlementGetTaskAllowEnable) {
+			JSON[@"get-task-allow"] = @YES;
+		} else {
+			JSON[@"get-task-allow"] = nil;
+		}
+		entitlements = [ISEntitlements entitlementsWithEntitlements:JSON];
 	}
 	return ISCodesign(self.identity.SHA1, YES, YES, entitlements.path.string, appPath.string);
 }

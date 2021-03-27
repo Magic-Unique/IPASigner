@@ -110,11 +110,4 @@
 	return entitlements;
 }
 
-- (NSString *)stringWithJSON:(NSDictionary *)JSON {
-	NSData *data = [NSJSONSerialization dataWithJSONObject:JSON options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@"\n    "];
-	return string;
-}
-
 @end

@@ -11,6 +11,8 @@
 #import "ISIdentity.h"
 #import "ISEntitlements.h"
 
+FOUNDATION_EXTERN NSString *const ISIPAMainBundleIdentifier;
+
 @interface ISIPASignerOptions : NSObject
 
 @property (nonatomic, copy) NSString *CFBundleIdentifier;

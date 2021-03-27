@@ -21,23 +21,6 @@ static int IPASignInStandardMode(CLProcess *process, MPProvisionType type) {
 	MUPath *input = [IPASigner inputPathFromProcess:process];
 	MUPath *output = [IPASigner outputPathFromProcess:process];
 	
-	NSDictionary *entitlements = ({
-		NSMutableDictionary *entitlements = nil;
-		if (process.queries[@"entitlements"]) {
-			entitlements = [NSMutableDictionary dictionary];
-			NSArray *list = process.queries[@"entitlements"];
-			for (NSString *item in list) {
-				NSArray *components = [item componentsSeparatedByString:@"="];
-				if (components.count != 2) {
-					CLError(@"Ivalid entitlements value (%@).", item);
-					return EXIT_FAILURE;
-				}
-				entitlements[components.firstObject] = [MUPath pathWithString:components.lastObject];
-			}
-		}
-		[entitlements copy];
-	});
-	
 	ISIPASignerOptions *options = [IPASigner genSignOptionsFromProcess:process];
 	
 	CLInfo(@"Reading profile...");
@@ -57,9 +40,6 @@ static int IPASignInStandardMode(CLProcess *process, MPProvisionType type) {
 	};
 	options.identityForProvision = ^ISIdentity *(ISProvision *provision, NSArray<ISIdentity *> *identities) {
 		return identities.firstObject;
-	};
-	options.entitlementsForBundle = ^ISEntitlements *(MUPath *bundle) {
-		return entitlements[bundle.CFBundleIdentifier];
 	};
 	
 	if ([ISIPASigner sign:input options:options output:output]) {

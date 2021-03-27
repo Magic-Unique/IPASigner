@@ -14,6 +14,8 @@
 #import "ISShellChmod.h"
 #import <MachOKit/MachOKit.h>
 
+NSString *const ISIPAMainBundleIdentifier = @"com.unique.ipasigner.mainbundleentitlements";
+
 @implementation ISIPASignerOptions
 
 @end

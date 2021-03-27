@@ -7,6 +7,7 @@
 //
 
 #import "IPASigner.h"
+#import "MUPath+IPA.h"
 
 @implementation IPASigner
 
@@ -55,6 +56,34 @@
 	if ([process flag:@"no-file-sharing"]) {
 		options.disableiTunesFileSharing = YES;
 	}
+	
+	NSDictionary *entitlements = ({
+		NSMutableDictionary *entitlements = nil;
+		if (process.queries[@"entitlements"]) {
+			entitlements = [NSMutableDictionary dictionary];
+			NSArray *list = process.queries[@"entitlements"];
+			for (NSString *item in list) {
+				NSArray *components = [item componentsSeparatedByString:@"="];
+				if (components.count != 2) {
+					entitlements[ISIPAMainBundleIdentifier] = [MUPath pathWithString:components.lastObject];
+				} else {
+					entitlements[components.firstObject] = [MUPath pathWithString:components.lastObject];
+				}
+			}
+		}
+		[entitlements copy];
+	});
+	options.entitlementsForBundle = ^ISEntitlements *(MUPath *bundle) {
+		MUPath *_entitlements = entitlements[bundle.CFBundleIdentifier];
+		if (!_entitlements && bundle.isApp) {
+			_entitlements = entitlements[ISIPAMainBundleIdentifier];
+		}
+		if (_entitlements) {
+			return [ISEntitlements entitlementsWithPath:_entitlements];
+		}
+		return nil;
+	};
+	
     return options;
 }
 

@@ -74,9 +74,6 @@
 		options.identityForProvision = ^ISIdentity *(ISProvision *provision, NSArray<ISIdentity *> *identities) {
 			return identities.firstObject;
 		};
-		options.entitlementsForBundle = ^ISEntitlements *(MUPath *bundle) {
-			return nil;
-		};
 		
 		BOOL result = [ISIPASigner sign:input options:options output:output];
 		if (result) {

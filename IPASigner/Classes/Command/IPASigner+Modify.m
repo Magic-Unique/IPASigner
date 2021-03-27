@@ -21,7 +21,6 @@
 		ISIPASignerOptions *options = [self genSignOptionsFromProcess:process];
 		options.provisionForBundle = nil;
 		options.identityForProvision = nil;
-		options.entitlementsForBundle = nil;
 		options.ignoreSign = YES;
 		
 		BOOL result = [ISIPASigner sign:input options:options output:output];

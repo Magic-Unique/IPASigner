@@ -21,6 +21,8 @@
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
 	command.setFlag(@"fix-icons").setExplain(@"Fix icons-losing on high devices.");
 	
+	command.setQuery(@"thin").optional().setExample(@"armv7|arm64").setExplain(@"Thin binary");
+	
 	command.setFlag(@"rm-plugins").setExplain(@"Delete all app extensions.");
 	command.setFlag(@"rm-watches").setExplain(@"Delete all watch apps.");
 	command.setFlag(@"rm-ext").setAbbr('r').setExplain(@"Delete all watch apps and plugins.");
@@ -44,6 +46,11 @@
 	options.supportAllDevices = [process flag:@"support-all-devices"];
 	options.fixIcons = [process flag:@"fix-icons"];
 	options.getTaskAllow = process.queries[@"get-task-allow"];
+	
+	ISMachOPlatform thin = process.queries[@"thin"];
+	if (thin && [@[ISMachOPlatformArmV7, ISMachOPlatformArm64] containsObject:thin]) {
+		options.thin = thin;
+	}
 	
 	if ([process flag:@"file-sharing"] && [process flag:@"no-file-sharing"]) {
 		CLError(@"You must type in one of --file-sharing and --no-file-sharing, or without anyone.");

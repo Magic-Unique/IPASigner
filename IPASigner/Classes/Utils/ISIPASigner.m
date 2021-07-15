@@ -12,9 +12,13 @@
 #import "ISProvisionManager.h"
 #import "ISSigner.h"
 #import "ISShellChmod.h"
+#import "ISShellLipo.h"
 #import <MachOKit/MachOKit.h>
 
 NSString *const ISIPAMainBundleIdentifier = @"com.unique.ipasigner.mainbundleentitlements";
+
+const ISMachOPlatform ISMachOPlatformArmV7 = @"armv7";
+const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 
 @implementation ISIPASignerOptions
 
@@ -100,6 +104,54 @@ NSString *const ISIPAMainBundleIdentifier = @"com.unique.ipasigner.mainbundleent
 	}
 
 	[ISInfoModifier setBundle:app supportAllDevices:YES];
+	
+	//  分离平台
+	if (options.thin) {
+		NSString *thin = options.thin;
+		
+		CLInfo(@"Thin binary to `%@` platform...", thin);
+		
+		NSMutableArray *embeddedBundles = ({
+			NSMutableArray *bundles = [NSMutableArray array];
+			[bundles addObjectsFromArray:app.allPlugInApps];
+			[bundles addObjectsFromArray:app.allWatchApps];
+			[bundles addObject:app];
+			[bundles copy];
+		});
+		
+		NSMutableSet *thinedLoadPath = [NSMutableSet set];
+		
+		void (^ThinBinary)(MUPath *binary) = ^(MUPath *binary) {
+			if ([thinedLoadPath containsObject:binary]) { return; }
+			[thinedLoadPath addObject:binary];
+			CLInfo(@"Thin: %@", [binary relativeStringToPath:PayloadPath]);
+			NSArray *platforms = ISLipoArchs(binary.string);
+			if ([platforms containsObject:thin] && platforms.count != 1) {
+				MUPath *output = [binary pathByReplacingLastPathComponent:@"IPASIGNER_THIN_BINARY"];
+				if (ISLipoThin(binary.string, thin, output.string)) {
+					[binary remove];
+					[output moveTo:binary autoCover:YES];
+				}
+			}
+		};
+		
+		for (MUPath *appex in embeddedBundles) {
+			NSMutableSet *links = [NSMutableSet set];
+			[links addObjectsFromArray:appex.CFBundleExecutable.loadedLibraries];
+			MUPath *Frameworks = [appex subpathWithComponent:@"Frameworks"];
+			if (Frameworks.isDirectory) {
+				[Frameworks enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
+					[links addObject:content.string];
+				}];
+			}
+			
+			[links.allObjects enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL * _Nonnull stop) {
+				ThinBinary([MUPath pathWithString:path]);
+			}];
+			
+			ThinBinary(appex.CFBundleExecutable);
+		}
+	}
 	
 	//	签名
 	if (!options.ignoreSign) {

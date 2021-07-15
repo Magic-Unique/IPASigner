@@ -16,6 +16,7 @@
 #define IS_BIN_UNZIP			@"/usr/bin/unzip"
 #define IS_BIN_MKTEMP			@"/usr/bin/mktemp"
 #define IS_BIN_XCODE_SELECT		@"/usr/bin/xcode-select"
+#define IS_BIN_LIPO				@"/usr/bin/lipo"
 #define IS_BIN_CHMOD			@"/bin/chmod"
 
 #define IS_BIN_OTOOL			(ISXcodeBinPath(@"XcodeDefault", @"/usr/bin/otool"))

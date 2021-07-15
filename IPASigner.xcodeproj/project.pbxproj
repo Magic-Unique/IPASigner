@@ -29,6 +29,7 @@
 		6DA8A58123301C1900044B5B /* ISShellSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A58023301C1900044B5B /* ISShellSecurity.m */; };
 		6DA8A58423301F8600044B5B /* ISShellMakeTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A58323301F8600044B5B /* ISShellMakeTemp.m */; };
 		6DA8A58A2330219400044B5B /* ISShellCodesign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A5892330219400044B5B /* ISShellCodesign.m */; };
+		6DAB2796269F3DF200437C60 /* ISShellLipo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAB2795269F3DF200437C60 /* ISShellLipo.m */; };
 		6DC58238235DDD7D0071F758 /* IPASigner+Provision.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA8A96A23303EB100044B5B /* IPASigner+Provision.m */; };
 		6DEA697E246FE525000BB26A /* IPASigner+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEA697D246FE525000BB26A /* IPASigner+Config.m */; };
 		6DEA698424702901000BB26A /* NSUserDefaults+IPASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEA698324702901000BB26A /* NSUserDefaults+IPASigner.m */; };
@@ -95,6 +96,8 @@
 		6DA8A5892330219400044B5B /* ISShellCodesign.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellCodesign.m; sourceTree = "<group>"; };
 		6DA8A96923303EB100044B5B /* IPASigner+Provision.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Provision.h"; sourceTree = "<group>"; };
 		6DA8A96A23303EB100044B5B /* IPASigner+Provision.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Provision.m"; sourceTree = "<group>"; };
+		6DAB2794269F3DF200437C60 /* ISShellLipo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISShellLipo.h; sourceTree = "<group>"; };
+		6DAB2795269F3DF200437C60 /* ISShellLipo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISShellLipo.m; sourceTree = "<group>"; };
 		6DEA697C246FE525000BB26A /* IPASigner+Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IPASigner+Config.h"; sourceTree = "<group>"; };
 		6DEA697D246FE525000BB26A /* IPASigner+Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "IPASigner+Config.m"; sourceTree = "<group>"; };
 		6DEA698224702901000BB26A /* NSUserDefaults+IPASigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+IPASigner.h"; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				6DA8A58323301F8600044B5B /* ISShellMakeTemp.m */,
 				6DA8A5882330219300044B5B /* ISShellCodesign.h */,
 				6DA8A5892330219400044B5B /* ISShellCodesign.m */,
+				6DAB2794269F3DF200437C60 /* ISShellLipo.h */,
+				6DAB2795269F3DF200437C60 /* ISShellLipo.m */,
 			);
 			path = Shell;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				6D9066C92351D97E00104A19 /* ISSigner.m in Sources */,
 				6DA8A57A2330185F00044B5B /* ISIdentityManager.m in Sources */,
 				6DC58238235DDD7D0071F758 /* IPASigner+Provision.m in Sources */,
+				6DAB2796269F3DF200437C60 /* ISShellLipo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

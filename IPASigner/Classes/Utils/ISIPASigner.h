@@ -13,6 +13,11 @@
 
 FOUNDATION_EXTERN NSString *const ISIPAMainBundleIdentifier;
 
+typedef NSString *ISMachOPlatform;
+
+FOUNDATION_EXTERN const ISMachOPlatform ISMachOPlatformArmV7;
+FOUNDATION_EXTERN const ISMachOPlatform ISMachOPlatformArm64;
+
 @interface ISIPASignerOptions : NSObject
 
 @property (nonatomic, copy) NSString *CFBundleIdentifier;
@@ -31,6 +36,8 @@ FOUNDATION_EXTERN NSString *const ISIPAMainBundleIdentifier;
 @property (nonatomic, assign) BOOL fixIcons;
 
 @property (nonatomic, assign) BOOL supportAllDevices;
+
+@property (nonatomic, strong) ISMachOPlatform thin;
 
 @property (nonatomic, assign) BOOL ignoreSign;
 

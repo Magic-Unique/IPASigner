@@ -14,5 +14,7 @@ target 'IPASigner' do
   pod 'SSZipArchive'
   pod 'libMachO', :path => './CocoaPods'
   pod 'MachOKit', :path => './CocoaPods'
+  pod 'optool', :path => './CocoaPods'
+  pod 'optool-objc', :path => './CocoaPods'
 
 end

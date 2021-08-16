@@ -22,6 +22,7 @@
 	command.setFlag(@"fix-icons").setExplain(@"Fix icons-losing on high devices.");
 	
 	command.setQuery(@"thin").optional().setExample(@"armv7|arm64").setExplain(@"Thin binary");
+	command.setQuery(@"inject").setAbbr('I').optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExample(@"/path/to/dylib").setExplain(@"Inject dylib(s) into binary.");
 	
 	command.setFlag(@"rm-plugins").setExplain(@"Delete all app extensions.");
 	command.setFlag(@"rm-watches").setExplain(@"Delete all watch apps.");
@@ -50,6 +51,14 @@
 	ISMachOPlatform thin = process.queries[@"thin"];
 	if (thin && [@[ISMachOPlatformArmV7, ISMachOPlatformArm64] containsObject:thin]) {
 		options.thin = thin;
+	}
+	NSArray<NSString *> *injectDylibs = process.queries[@"inject"];
+	if (injectDylibs.count) {
+		NSMutableArray *list = [NSMutableArray array];
+		[injectDylibs enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+			[list addObject:[MUPath pathWithString:obj]];
+		}];
+		options.injectDylibs = [list copy];
 	}
 	
 	if ([process flag:@"file-sharing"] && [process flag:@"no-file-sharing"]) {

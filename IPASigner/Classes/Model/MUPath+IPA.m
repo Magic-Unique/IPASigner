@@ -45,7 +45,14 @@
 
 - (MUPath *)CFBundleExecutable {
     NSDictionary *info = self.info;
-    return [self subpathWithComponent:info[@"CFBundleExecutable"]];
+	if (!info) {
+		return nil;
+	}
+	NSString *CFBundleExecutable = info[@"CFBundleExecutable"];
+	if (!CFBundleExecutable) {
+		return nil;
+	}
+    return [self subpathWithComponent:CFBundleExecutable];
 }
 
 - (NSString *)CFBundleIdentifier {
@@ -239,105 +246,92 @@
 }
 
 - (NSArray<MUPath *> *)loadedLibrariesWithExecuter:(MUPath *)executer {
-    if (self.isFile && executer.isFile) {
-		NSMutableSet *links = [NSMutableSet set];
-		@autoreleasepool {
-			NSMutableArray *loads = [NSMutableArray array];
-			NSMutableArray *rpaths = [NSMutableArray array];
-			NSURL *URL = self.fileURL;
-			MKMemoryMap *map = [MKMemoryMap memoryMapWithContentsOfFile:URL error:nil];
-			MKFatBinary *fatBinary = [[MKFatBinary alloc] initWithMemoryMap:map error:nil];
-			MKMachOImage *macho = [[MKMachOImage alloc] initWithName:URL.lastPathComponent.UTF8String
-															   flags:kNilOptions
-														   atAddress:fatBinary.architectures.lastObject.offset
-														   inMapping:map
-															   error:nil];
-			for (MKLoadCommand *loadCommand in macho.loadCommands) {
-				if ([loadCommand isKindOfClass:[MKDylibLoadCommand class]]) {
-					MKDylibLoadCommand *dylibLoadCommand = (MKDylibLoadCommand *)loadCommand;
-					NSString *path = dylibLoadCommand.name.string;
-					if ([path hasPrefix:@"@"]) {
-						[loads addObject:path];
-					}
-				}
-				else if ([loadCommand isKindOfClass:[MKLCRPath class]]) {
-					MKLCRPath *rpath = (MKLCRPath *)loadCommand;
-					NSString *path = rpath.path.string;
-					if (![path hasPrefix:@"/"]) { // Ignore system rpath
-						[rpaths addObject:path];
-					}
+	guard (self.isFile && executer.isFile) else {
+		return nil;
+	}
+	
+	NSMutableSet *links = [NSMutableSet set];
+	NSMutableArray *loads = [NSMutableArray array];
+	NSMutableArray *rpaths = [NSMutableArray array];
+	@autoreleasepool {
+		NSURL *URL = self.fileURL;
+		MKMemoryMap *map = [MKMemoryMap memoryMapWithContentsOfFile:URL error:nil];
+		MKFatBinary *fatBinary = [[MKFatBinary alloc] initWithMemoryMap:map error:nil];
+		MKMachOImage *macho = [[MKMachOImage alloc] initWithName:URL.lastPathComponent.UTF8String
+														   flags:kNilOptions
+													   atAddress:fatBinary.architectures.lastObject.offset
+													   inMapping:map
+														   error:nil];
+		for (MKLoadCommand *loadCommand in macho.loadCommands) {
+			if ([loadCommand isKindOfClass:[MKDylibLoadCommand class]] && loadCommand.cmd == LC_LOAD_DYLIB) {
+				MKDylibLoadCommand *dylibLoadCommand = (MKDylibLoadCommand *)loadCommand;
+				NSString *path = dylibLoadCommand.name.string;
+				if ([path hasPrefix:@"@"]) {
+					[loads addObject:path];
 				}
 			}
-			
-			NSString *executable_path = executer.superpath.string;
-			NSString *loader_path = self.superpath.string;
-			for (NSString *load in loads) {
-				if ([load.lastPathComponent isEqualToString:self.lastPathComponent]) {
-					continue;
-				}
-				if ([load hasPrefix:@"@executable_path"]) {
-					MUPath *path = [MUPath pathWithString:[load stringByReplacingOccurrencesOfString:@"@executable_path"
-																						  withString:executable_path]];
-					if (path.isFile) {
-						if ([path.superpath isA:@"framework"]) {
-							[links addObject:path.superpath.string];
-						} else {
-							[links addObject:path.string];
-						}
-						[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
-					} else {
-						CLError(@"The file is not exist 1: %@", path.string);
-					}
-				}
-				else if ([load hasPrefix:@"@loader_path"]) {
-					MUPath *path = [MUPath pathWithString:[load stringByReplacingOccurrencesOfString:@"@loader_path"
-																						  withString:loader_path]];
-					if (path.isFile) {
-						if ([path.superpath isA:@"framework"]) {
-							[links addObject:path.superpath.string];
-						} else {
-							[links addObject:path.string];
-						}
-						[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
-					} else {
-						CLError(@"The file is not exist 2: %@", path.string);
-					}
-				}
-				else if ([load hasPrefix:@"@rpath"]) {
-					for (NSString *rpath in rpaths) {
-						NSString *temp = load;
-						temp = [temp stringByReplacingOccurrencesOfString:@"@rpath" withString:rpath];
-						temp = [temp stringByReplacingOccurrencesOfString:@"@executable_path" withString:executable_path];
-						temp = [temp stringByReplacingOccurrencesOfString:@"@loader_path" withString:loader_path];
-						MUPath *path = [MUPath pathWithString:temp];
-						if (path.isFile) {
-							if ([path.superpath isA:@"framework"]) {
-								[links addObject:path.superpath.string];
-							} else {
-								[links addObject:path.string];
-							}
-							[links addObjectsFromArray:[path loadedLibrariesWithExecuter:executer]];
-							break;
-						}
-					}
+			else if ([loadCommand isKindOfClass:[MKLCRPath class]]) {
+				MKLCRPath *rpath = (MKLCRPath *)loadCommand;
+				NSString *path = rpath.path.string;
+				if (![path hasPrefix:@"/"]) { // Ignore system rpath
+					[rpaths addObject:path];
 				}
 			}
 		}
-		
-		NSMutableArray *_list = links.allObjects.mutableCopy;
-		NSString *bundle = executer.superpath.string;
-		for (NSUInteger i = 0; i < _list.count; i++) {
-			NSString *path = _list[i];
-			if (![path hasPrefix:bundle]) {
-				[_list removeObjectAtIndex:i--];
-				CLVerbose(@"Ignore %@", path);
+	}
+	
+	NSString *executable_path = executer.superpath.string;
+	NSString *loader_path = self.superpath.string;
+#define AddPathToLink(p, l) if ([p.superpath isA:@"framework"]) { [l addObject:p.superpath.string]; } else { [l addObject:p.string]; } [l addObjectsFromArray:[p loadedLibrariesWithExecuter:executer]]
+	for (NSString *load in loads) {
+		//				if ([load.lastPathComponent isEqualToString:self.lastPathComponent]) { has filt LC_ID_DYLIB
+		//					continue;
+		//				}
+		if ([load hasPrefix:@"@executable_path"]) {
+			MUPath *path = [MUPath pathWithString:[load stringByReplacingOccurrencesOfString:@"@executable_path"
+																				  withString:executable_path]];
+			if (path.isFile) {
+				AddPathToLink(path, links);
 			} else {
-				CLVerbose(@"Add %@", path);
+				CLError(@"The file is not exist 1: %@", path.string);
 			}
 		}
-		return _list;
-    }
-    return nil;
+		else if ([load hasPrefix:@"@loader_path"]) {
+			MUPath *path = [MUPath pathWithString:[load stringByReplacingOccurrencesOfString:@"@loader_path"
+																				  withString:loader_path]];
+			if (path.isFile) {
+				AddPathToLink(path, links);
+			} else {
+				CLError(@"The file is not exist 2: %@", path.string);
+			}
+		}
+		else if ([load hasPrefix:@"@rpath"]) {
+			for (NSString *rpath in rpaths) {
+				NSString *temp = load;
+				temp = [temp stringByReplacingOccurrencesOfString:@"@rpath" withString:rpath];
+				temp = [temp stringByReplacingOccurrencesOfString:@"@executable_path" withString:executable_path];
+				temp = [temp stringByReplacingOccurrencesOfString:@"@loader_path" withString:loader_path];
+				MUPath *path = [MUPath pathWithString:temp];
+				if (path.isFile) {
+					AddPathToLink(path, links);
+					break;
+				}
+			}
+		}
+	}
+#undef AddPathToLink
+	
+	NSString *bundle = executer.superpath.string;
+	[links filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+		if ([evaluatedObject hasPrefix:bundle]) {
+			CLVerbose(@"Add %@", evaluatedObject);
+			return YES;
+		} else {
+			CLVerbose(@"Ignore %@", evaluatedObject);
+			return NO;
+		}
+	}]];
+	return links.allObjects;
 }
 
 @end

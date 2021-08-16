@@ -38,6 +38,7 @@ FOUNDATION_EXTERN const ISMachOPlatform ISMachOPlatformArm64;
 @property (nonatomic, assign) BOOL supportAllDevices;
 
 @property (nonatomic, strong) ISMachOPlatform thin;
+@property (nonatomic, strong) NSArray<MUPath *> *injectDylibs;
 
 @property (nonatomic, assign) BOOL ignoreSign;
 

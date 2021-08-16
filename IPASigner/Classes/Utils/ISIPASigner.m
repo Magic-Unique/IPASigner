@@ -14,6 +14,7 @@
 #import "ISShellChmod.h"
 #import "ISShellLipo.h"
 #import <MachOKit/MachOKit.h>
+#import <optool-objc/optool-objc.h>
 
 NSString *const ISIPAMainBundleIdentifier = @"com.unique.ipasigner.mainbundleentitlements";
 
@@ -39,7 +40,7 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 	CLInfo(@"Create temp directory: %@", tempPath.string);
 	[tempPath createDirectoryWithCleanContents:YES];
 	
-	CLInfo(@"Unzip: %@", ipaInput.lastPathComponent);
+	CLInfo(@"Unpackage IPA: %@", ipaInput.string);
 	if ([SSZipArchive unzipFileAtPath:ipaInput.string toDestination:tempPath.string] == NO) {
 		CLError(@"Can not unzip file.");
 		return NO;
@@ -153,6 +154,56 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 		}
 	}
 	
+	//	注入
+	if (options.injectDylibs) {
+		CLInfo(@"Injection %@", [app relativeStringToPath:PayloadPath]);
+		CLPushIndent();
+		OPBinary *binary = [OPBinary binaryWithPath:app.CFBundleExecutable.string];
+		for (MUPath *inject in options.injectDylibs) {
+			if (!inject.isExist) {
+				CLError(@"The dylib(%@) can not be injected, because the file is not existed.");
+				return NO;
+			}
+			
+			if (inject.isDirectory) {
+				//	注入 Framework
+				MUPath *exec = inject.CFBundleExecutable;
+				if (!exec.isFile) {
+					CLError(@"The framework(%@) does not contains executable file.", inject.lastPathComponent);
+					return NO;
+				}
+				
+				MUPath *Frameworks = [app subpathWithComponent:@"Frameworks"]; [Frameworks createDirectoryWithCleanContents:NO];
+				MUPath *target = [Frameworks subpathWithComponent:inject.lastPathComponent];
+				if (target.isExist) {
+					CLError(@"The framework(%@) can not be injected, because it is areadly existed in app.", target.lastPathComponent);
+					return NO;
+				}
+				
+				NSString *installPath = [NSString stringWithFormat:@"@executable_path/Frameworks/%@/%@", target.lastPathComponent, exec.lastPathComponent];
+				CLInfo(@"Inject framework: %@", installPath);
+				[inject copyTo:target autoCover:YES];
+				[binary install:installPath];
+			}
+			else {
+				//	注入 dylib
+				MUPath *target = [app subpathWithComponent:inject.lastPathComponent];
+				if (target.isExist) {
+					CLError(@"The dylib(%@) can not be injected, because it is areadly existed in app.", target.lastPathComponent);
+					return NO;
+				}
+				
+				NSString *installPath = [NSString stringWithFormat:@"@executable_path/%@", target.lastPathComponent];
+				CLInfo(@"Inject dylib: %@", installPath);
+				[inject copyTo:target autoCover:YES];
+				[binary install:installPath];
+			}
+		}
+		CLInfo(@"Write new binary...");
+		[binary save];
+		CLPopIndent();
+	}
+	
 	//	签名
 	if (!options.ignoreSign) {
 		NSArray *embeddedBundles = ({
@@ -195,7 +246,7 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 				signer.getTaskAllow = ISSignerEntitlementGetTaskAllowEnable;
 			}
 			
-			CLInfo(@"Begin Sign: %@", appex.lastPathComponent);
+			CLInfo(@"CodeSign: %@", appex.lastPathComponent);
 			CLPushIndent();
 			MUPath *from = provision.path;
 			MUPath *to = [appex subpathWithComponent:@"embedded.mobileprovision"];

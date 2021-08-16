@@ -27,4 +27,6 @@
 
 #define IS_CONFIG_ALL_KEYS @[IS_CONFIG_KEY_default_profile]
 
+#define guard(pattern) if (pattern) {}
+
 #endif /* PrefixHeader_pch */

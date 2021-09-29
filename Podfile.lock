@@ -25,6 +25,9 @@ PODS:
     - libMachO
   - MobileProvision (1.0.1)
   - MUFoundation/MUPath (0.0.5)
+  - optool (0.1.0)
+  - optool-objc (0.1.0):
+    - optool
   - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
@@ -33,6 +36,8 @@ DEPENDENCIES:
   - MachOKit (from `./CocoaPods`)
   - MobileProvision
   - MUFoundation/MUPath
+  - optool (from `./CocoaPods`)
+  - optool-objc (from `./CocoaPods`)
   - SSZipArchive
 
 SPEC REPOS:
@@ -48,6 +53,10 @@ EXTERNAL SOURCES:
     :path: "./CocoaPods"
   MachOKit:
     :path: "./CocoaPods"
+  optool:
+    :path: "./CocoaPods"
+  optool-objc:
+    :path: "./CocoaPods"
 
 SPEC CHECKSUMS:
   CommandLine: 4801986f6cd7fed64239ee5320be5e5c683edce3
@@ -55,8 +64,10 @@ SPEC CHECKSUMS:
   MachOKit: 2c449f2d1aaffaf5e268c20a8107c0e93ab7e657
   MobileProvision: b9b8166ac061b11c7440cc3881ac94ebc8dce58f
   MUFoundation: d56f948f4c818f46a19ead18f38014e6330f40c3
+  optool: c36ba089d5ce6ff6b8bae90f96094551ff51c86d
+  optool-objc: 200bba4326c4cbabd8e0d098429320b0d2df1109
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
-PODFILE CHECKSUM: 906b2f37dd248d212727c10f47d14c806bed1876
+PODFILE CHECKSUM: 79ae4933ee816e6e2385d1ddf3cd8ab0542450a9
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

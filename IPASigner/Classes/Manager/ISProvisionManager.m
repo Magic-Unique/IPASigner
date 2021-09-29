@@ -32,7 +32,9 @@
 - (NSArray<ISProvision *> *)installedProvisions {
 	if (!_installedProvisions) {
 		NSMutableArray *provisions = [NSMutableArray array];
-		NSArray *list = [[MUPath provisionPath] contents];
+		NSArray *list = [[MUPath provisionPath] contentsWithFilter:^BOOL(MUPath *content) {
+			return content.isFile && [content isA:@"mobileprovision"];
+		}];
 		for (MUPath *path in list) {
 			ISProvision *provision = [ISProvision provisionWithPath:path];
 			[provisions addObject:provision];

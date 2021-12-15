@@ -122,3 +122,76 @@ $ ipasigner sign in-house ./QQ.ipa ./QQ_sign.ipa
 # 使用当前 bundle id (com.tencent.xin) 的 in-house 签名来签名当前目录的 QQ.ipa
 # 将会输出 QQ_sign.ipa
 ```
+
+获取更详细的参数帮助信息，可以执行以下命令获取：
+
+```bash
+$ ipasigner sign <development|ad-hoc|distribution|in-house> --help
+```
+
+## 自定义修改包内容
+
+### Info.plist
+
+```bash
+
+# 包名
+--bundle-id <NEW_BUNDLE_ID>
+
+# 版本号
+--bundle-version <NEW_BUNDLE_VERSION>
+
+# 构建号
+--build-version <NEW_BUILD_VERSION>
+
+# 桌面名称
+--bundle-display-name <NEW_BUNDLE_DISPLAY_NAME>
+
+# 删除 UISupportDevices 标记
+--support-add-devices
+
+# 打开或者关闭 iTunes 文件共享（访问 Documents 文件夹）
+--file-sharing
+--no-file-sharing
+
+```
+
+### 修改二进制
+
+```bash
+
+# 瘦身到单独的指令集
+--thin arm64
+
+# 注入动态库到主二进制
+--inject /path/to/dylib1 --inject /path/to/dylib2 ...
+
+# 自定义权限列表
+--entitlements /path/to/.entitlements
+--get-task-allow <1|0>
+
+```
+
+### 修改应用扩展
+
+```bash
+
+# 删除 PlugIns
+--rm-plugins
+
+# 删除 Watches
+--rm-watched
+
+# 删除 PlugIns & Watches
+--rm-ext
+
+```
+
+### 主应用
+
+```bash
+
+# 修复白图标
+--fix-icons
+
+```

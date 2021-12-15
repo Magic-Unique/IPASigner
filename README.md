@@ -125,5 +125,72 @@ $ ipasigner sign in-house ./QQ.ipa ./QQ_sign.ipa
 For more detail informations and arguments, do
 
 ```bash
-ipasigner sign <development|ad-hoc|distribution|in-house> --help
+$ ipasigner sign <development|ad-hoc|distribution|in-house> --help
+```
+
+## Sign with custom package
+
+### Info.plist
+
+```bash
+
+# Bundle identifier
+--bundle-id <NEW_BUNDLE_ID>
+
+# Bundle version
+--bundle-version <NEW_BUNDLE_VERSION>
+
+# Build version
+--build-version <NEW_BUILD_VERSION>
+
+# Bundle display name
+--bundle-display-name <NEW_BUNDLE_DISPLAY_NAME>
+
+# Remove UISupportDevices flag
+--support-add-devices
+
+# Enable or disable iTunes file sharing
+--file-sharing
+--no-file-sharing
+
+```
+
+### Binary
+
+```bash
+
+# Thin all binary to single platform
+--thin arm64
+
+# Inject dylib into main binary
+--inject /path/to/dylib1 --inject /path/to/dylib2 ...
+
+# Custom entitlements
+--entitlements /path/to/.entitlements
+--get-task-allow <1|0>
+
+```
+
+### App Extensions
+
+```bash
+
+# Remove PlugIns
+--rm-plugins
+
+# Remove Watches
+--rm-watched
+
+# Remove PlugIns & Watches
+--rm-ext
+
+```
+
+### Main Bundle
+
+```bash
+
+# Fix Icon Error
+--fix-icons
+
 ```

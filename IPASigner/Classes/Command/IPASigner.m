@@ -27,6 +27,7 @@
 	command.setFlag(@"rm-plugins").setExplain(@"Delete all app extensions.");
 	command.setFlag(@"rm-watches").setExplain(@"Delete all watch apps.");
 	command.setFlag(@"rm-ext").setAbbr('r').setExplain(@"Delete all watch apps and plugins.");
+	command.setFlag(@"replace").setAbbr('R').setExplain(@"Sign and replace input file.");
 	
 	command.setQuery(@"entitlements").setAbbr('e').optional().setMultiType(CLQueryMultiTypeMoreKeyValue).setExplain(@"Sign with entitlements, bundle_id=entitlement_path");
 	command.setQuery(@"get-task-allow").setAbbr('D').optional().setExample(@"1|0").setExplain(@"Modify `get-task-allow` in entitlements.");
@@ -47,6 +48,7 @@
 	options.supportAllDevices = [process flag:@"support-all-devices"];
 	options.fixIcons = [process flag:@"fix-icons"];
 	options.getTaskAllow = process.queries[@"get-task-allow"];
+	options.replace = [process flag:@"replace"];
 	
 	ISMachOPlatform thin = process.queries[@"thin"];
 	if (thin && [@[ISMachOPlatformArmV7, ISMachOPlatformArm64] containsObject:thin]) {

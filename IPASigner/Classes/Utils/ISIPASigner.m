@@ -31,19 +31,40 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
      options:(ISIPASignerOptions *)options
       output:(MUPath *)ipaOutput {
 	
-	if (!ipaInput.isFile) {
+	if (!ipaInput.isExist) {
 		CLError(@"The file does not exist: %@", ipaInput.string);
 		return EXIT_FAILURE;
+	}
+	
+	BOOL isIPA = NO;
+	if (ipaInput.isFile && [ipaInput isA:@"ipa"]) {
+		isIPA = YES;
+	}
+	else if (ipaInput.isDirectory && [ipaInput isA:@"app"]) {
+		isIPA = NO;
+	}
+	else {
+		CLError(@"Unsupport file type for `%@`", ipaInput.string);
+		return NO;
 	}
 	
 	MUPath *tempPath = [[MUPath tempPath] subpathWithComponent:@(NSDate.date.timeIntervalSince1970).stringValue];
 	CLInfo(@"Create temp directory: %@", tempPath.string);
 	[tempPath createDirectoryWithCleanContents:YES];
 	
-	CLInfo(@"Unpackage IPA: %@", ipaInput.string);
-	if ([SSZipArchive unzipFileAtPath:ipaInput.string toDestination:tempPath.string] == NO) {
-		CLError(@"Can not unzip file.");
-		return NO;
+	if (isIPA) {
+		CLInfo(@"Unpackage IPA: %@", ipaInput.string);
+		if ([SSZipArchive unzipFileAtPath:ipaInput.string toDestination:tempPath.string] == NO) {
+			CLError(@"Can not unzip file.");
+			return NO;
+		}
+	} else {
+		CLInfo(@"Copy app: %@", ipaInput.string);
+		MUPath *PayloadPath = [tempPath subpathWithComponent:@"Payload"];
+		NSError *error = [PayloadPath createDirectoryWithCleanContents:YES];
+		if (error) { CLError(@"Can not copy app."); CLError(@"%@", error.localizedDescription); return NO; }
+		error = [ipaInput copyInto:PayloadPath autoCover:YES];
+		if (error) { CLError(@"Can not copy app."); CLError(@"%@", error.localizedDescription); return NO; }
 	}
 	
 	MUPath *PayloadPath = [tempPath subpathWithComponent:@"Payload"];
@@ -279,16 +300,37 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 		}
 	}
 	
-	// 压缩
-	CLInfo(@"Package IPA: %@", ipaOutput.string);
+	// 替换
+	if (options.replace) {
+		ipaOutput = ipaInput;
+	}
 	
-	BOOL result = [SSZipArchive createZipFileAtPath:ipaOutput.string withContentsOfDirectory:tempPath.string];
-	if (result) {
-		CLSuccess(@"Done!");
-		return YES;
-	} else {
-		CLError(@"Package failed.");
-		return NO;
+	// 压缩
+	if ([ipaOutput isA:@"app"]) {
+		CLInfo(@"Output App: %@", ipaOutput.string);
+		[ipaOutput remove];
+		NSError *error = [app moveTo:ipaOutput autoCover:YES];
+		if (!error) {
+			CLSuccess(@"Done!");
+			return YES;
+		} else {
+			CLError(@"Output failed.");
+			CLError(@"%@", error.localizedDescription);
+			return NO;
+		}
+	}
+	else {
+		CLInfo(@"Package IPA: %@", ipaOutput.string);
+		
+		BOOL result = [SSZipArchive createZipFileAtPath:ipaOutput.string withContentsOfDirectory:tempPath.string];
+		if (result) {
+			CLSuccess(@"Done!");
+			return YES;
+		} else {
+			CLError(@"Package failed.");
+			return NO;
+		}
+		
 	}
 	
 }

@@ -42,6 +42,8 @@ FOUNDATION_EXTERN const ISMachOPlatform ISMachOPlatformArm64;
 
 @property (nonatomic, assign) BOOL ignoreSign;
 
+@property (nonatomic, assign) BOOL replace;
+
 @property (nonatomic, copy) ISProvision *(^provisionForBundle)(MUPath *bundle);
 
 @property (nonatomic, copy) ISEntitlements *(^entitlementsForBundle)(MUPath *bundle);

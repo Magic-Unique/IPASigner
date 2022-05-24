@@ -14,7 +14,7 @@
 #import "ISShellChmod.h"
 #import "ISShellLipo.h"
 #import <MachOKit/MachOKit.h>
-#import <optool-objc/optool-objc.h>
+#import <optool/optool.h>
 
 NSString *const ISIPAMainBundleIdentifier = @"com.unique.ipasigner.mainbundleentitlements";
 
@@ -158,7 +158,7 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 	if (options.injectDylibs) {
 		CLInfo(@"Injection %@", [app relativeStringToPath:PayloadPath]);
 		CLPushIndent();
-		OPBinary *binary = [OPBinary binaryWithPath:app.CFBundleExecutable.string];
+		OPTBinary *binary = [OPTBinary binaryWithPath:app.CFBundleExecutable.string];
 		for (MUPath *inject in options.injectDylibs) {
 			if (!inject.isExist) {
 				CLError(@"The dylib(%@) can not be injected, because the file is not existed.");

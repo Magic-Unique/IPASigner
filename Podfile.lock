@@ -21,53 +21,65 @@ PODS:
   - CommandLine/Tools (2.4.6):
     - CommandLine/Main
   - libMachO (0.1.1)
-  - MachOKit (0.1.0):
+  - MachOKit (0.1.1):
     - libMachO
   - MobileProvision (1.0.1)
   - MUFoundation/MUPath (0.0.5)
-  - optool (0.1.0)
-  - optool-objc (0.1.0):
-    - optool
+  - optool (0.1.2):
+    - optool/Core (= 0.1.2)
+    - optool/ObjC (= 0.1.2)
+  - optool/Core (0.1.2)
+  - optool/ObjC (0.1.2):
+    - optool/Core
   - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
   - CommandLine
-  - libMachO (from `./CocoaPods`)
-  - MachOKit (from `./CocoaPods`)
+  - libMachO (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
+  - MachOKit (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
   - MobileProvision
   - MUFoundation/MUPath
-  - optool (from `./CocoaPods`)
-  - optool-objc (from `./CocoaPods`)
+  - optool (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.2`)
   - SSZipArchive
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CommandLine
     - MobileProvision
     - MUFoundation
     - SSZipArchive
-  trunk:
-    - CommandLine
 
 EXTERNAL SOURCES:
   libMachO:
-    :path: "./CocoaPods"
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.1
   MachOKit:
-    :path: "./CocoaPods"
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.1
   optool:
-    :path: "./CocoaPods"
-  optool-objc:
-    :path: "./CocoaPods"
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.2
+
+CHECKOUT OPTIONS:
+  libMachO:
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.1
+  MachOKit:
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.1
+  optool:
+    :git: https://github.com/Magic-Unique/MachOKit.git
+    :tag: 0.1.2
 
 SPEC CHECKSUMS:
   CommandLine: 4801986f6cd7fed64239ee5320be5e5c683edce3
-  libMachO: 5f72f66647bd685609d2d705b0a46a77d1d30cd1
-  MachOKit: 2c449f2d1aaffaf5e268c20a8107c0e93ab7e657
+  libMachO: eb534f859db5feaff272e8ed2e50770fbc679e0e
+  MachOKit: 72dfbceb4f6e04905f67024b94f80fdb677dd793
   MobileProvision: b9b8166ac061b11c7440cc3881ac94ebc8dce58f
   MUFoundation: d56f948f4c818f46a19ead18f38014e6330f40c3
-  optool: c36ba089d5ce6ff6b8bae90f96094551ff51c86d
-  optool-objc: 200bba4326c4cbabd8e0d098429320b0d2df1109
+  optool: 51402602b6ac35b3f83fa85f5595d8dbd4fba52c
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
-PODFILE CHECKSUM: 79ae4933ee816e6e2385d1ddf3cd8ab0542450a9
+PODFILE CHECKSUM: 43698ced50150894e1b29cef429337e533f19beb
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

@@ -12,9 +12,8 @@ target 'IPASigner' do
   pod 'MUFoundation/MUPath'
   pod 'MobileProvision'
   pod 'SSZipArchive'
-  pod 'libMachO', :path => './CocoaPods'
-  pod 'MachOKit', :path => './CocoaPods'
-  pod 'optool', :path => './CocoaPods'
-  pod 'optool-objc', :path => './CocoaPods'
+  pod 'libMachO', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.1'
+  pod 'MachOKit', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.1'
+  pod 'optool', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.2'
 
 end

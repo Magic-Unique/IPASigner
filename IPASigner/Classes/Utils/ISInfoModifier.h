@@ -14,6 +14,8 @@
 
 + (void)setBundle:(MUPath *)bundle iTunesFileSharingEnable:(BOOL)enable;
 
++ (void)setBundle:(MUPath *)bundle supportsOpeningDocumentsInPlace:(BOOL)supportsOpeningDocumentsInPlace;
+
 + (void)setBundle:(MUPath *)bundle bundleShortVersionString:(NSString *)version;
 
 + (void)setBundle:(MUPath *)bundle bundleVersion:(NSString *)version;

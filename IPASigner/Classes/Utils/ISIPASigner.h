@@ -32,6 +32,8 @@ FOUNDATION_EXTERN const ISMachOPlatform ISMachOPlatformArm64;
 
 @property (nonatomic, assign) BOOL enableiTunesFileSharing;
 @property (nonatomic, assign) BOOL disableiTunesFileSharing;
+@property (nonatomic, assign) BOOL enableSupportsOpeningDocumentsInPlace;
+@property (nonatomic, assign) BOOL disableSupportsOpeningDocumentsInPlace;
 
 @property (nonatomic, assign) BOOL fixIcons;
 

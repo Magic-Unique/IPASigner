@@ -92,12 +92,29 @@
 }
 
 - (void)setUIFileSharingEnabled:(BOOL)UIFileSharingEnabled {
-	MUPath *infoPath = self.infoPath;
-	if (infoPath) {
-		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:infoPath.string];
-		info[@"UIFileSharingEnabled"] = @(UIFileSharingEnabled);
-		[info writeToFile:self.infoPath.string atomically:YES];
-	}
+	[self __setInfo:^(NSMutableDictionary *info) {
+		if (UIFileSharingEnabled) {
+			info[@"UIFileSharingEnabled"] = @YES;
+		} else {
+			info[@"UIFileSharingEnabled"] = nil;
+			info[@"LSSupportsOpeningDocumentsInPlace"] = nil;
+		}
+	}];
+}
+
+- (BOOL)LSSupportsOpeningDocumentsInPlace {
+	return [self.info[@"LSSupportsOpeningDocumentsInPlace"] boolValue] && self.UIFileSharingEnabled;
+}
+
+- (void)setLSSupportsOpeningDocumentsInPlace:(BOOL)LSSupportsOpeningDocumentsInPlace {
+	[self __setInfo:^(NSMutableDictionary *info) {
+		if (LSSupportsOpeningDocumentsInPlace) {
+			info[@"LSSupportsOpeningDocumentsInPlace"] = @YES;
+			info[@"UIFileSharingEnabled"] = @YES;
+		} else {
+			info[@"LSSupportsOpeningDocumentsInPlace"] = nil;
+		}
+	}];
 }
 
 - (void)supportAllDevices {
@@ -332,6 +349,17 @@
 		}
 	}]];
 	return links.allObjects;
+}
+
+- (BOOL)__setInfo:(void (^)(NSMutableDictionary *info))block {
+	MUPath *infoPath = self.infoPath;
+	if (infoPath) {
+		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:infoPath.string];
+		block(info);
+		[info writeToFile:self.infoPath.string atomically:YES];
+		return YES;
+	}
+	return NO;
 }
 
 @end

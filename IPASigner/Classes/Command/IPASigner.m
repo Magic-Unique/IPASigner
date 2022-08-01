@@ -19,6 +19,8 @@
 	command.setFlag(@"support-all-devices").setAbbr('a').setExplain(@"Remove Info's value for keyed UISupportDevices.");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
+	command.setFlag(@"file-place").setExplain(@"Enable opening documents in place");
+	command.setFlag(@"no-file-place").setExplain(@"Disable opening documents in place");
 	command.setFlag(@"fix-icons").setExplain(@"Fix icons-losing on high devices.");
 	
 	command.setQuery(@"thin").optional().setExample(@"armv7|arm64").setExplain(@"Thin binary");
@@ -67,12 +69,22 @@
 		CLError(@"You must type in one of --file-sharing and --no-file-sharing, or without anyone.");
 		CLExit(EXIT_FAILURE);
 	}
-	
-	if ([process flag:@"file-sharing"]) {
+	else if ([process flag:@"file-sharing"]) {
 		options.enableiTunesFileSharing = YES;
 	}
-	if ([process flag:@"no-file-sharing"]) {
+	else if ([process flag:@"no-file-sharing"]) {
 		options.disableiTunesFileSharing = YES;
+	}
+	
+	if ([process flag:@"file-place"] && [process flag:@"no-file-place"]) {
+		CLError(@"You must type in one of --file-place and --no-file-place, or without anyone.");
+		CLExit(EXIT_FAILURE);
+	}
+	else if ([process flag:@"file-place"]) {
+		options.enableSupportsOpeningDocumentsInPlace = YES;
+	}
+	else if ([process flag:@"no-file-place"]) {
+		options.disableSupportsOpeningDocumentsInPlace = YES;
 	}
 	
 	NSDictionary *entitlements = ({

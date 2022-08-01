@@ -114,10 +114,27 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 	}
 	
 	if (options.enableiTunesFileSharing) {
+		CLInfo(@"Modify UIFileSharingEnabled:");
+		CLPushIndent();
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:YES];
-		app.UIFileSharingEnabled = YES;
+		CLPopIndent();
 	} else if (options.disableiTunesFileSharing) {
+		CLInfo(@"Modify UIFileSharingEnabled:");
+		CLPushIndent();
 		[ISInfoModifier setBundle:app iTunesFileSharingEnable:NO];
+		CLPopIndent();
+	}
+	
+	if (options.enableSupportsOpeningDocumentsInPlace) {
+		CLInfo(@"Modify LSSupportsOpeningDocumentsInPlace:");
+		CLPushIndent();
+		[ISInfoModifier setBundle:app supportsOpeningDocumentsInPlace:YES];
+		CLPopIndent();
+	} else if (options.disableSupportsOpeningDocumentsInPlace) {
+		CLInfo(@"Modify LSSupportsOpeningDocumentsInPlace:");
+		CLPushIndent();
+		[ISInfoModifier setBundle:app supportsOpeningDocumentsInPlace:NO];
+		CLPopIndent();
 	}
 	
 	if (options.fixIcons) {

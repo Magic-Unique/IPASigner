@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSString *CFBundleDisplayName;
 
 @property (nonatomic, assign) BOOL UIFileSharingEnabled;
+@property (nonatomic, assign) BOOL LSSupportsOpeningDocumentsInPlace;
 
 @property (nonatomic, strong, readonly) NSArray<MUPath *> *loadedLibraries;
 

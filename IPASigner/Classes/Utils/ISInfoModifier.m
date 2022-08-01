@@ -15,7 +15,7 @@
 	NSString *newMainBundleID = bundleID;
 	NSString *oldMainBundleID = bundle.CFBundleIdentifier;
 	
-	CLInfo(@"%@ = %@", bundle.lastPathComponent, newMainBundleID);
+	CLInfo(@"Set %@ bundle id: %@", bundle.lastPathComponent, newMainBundleID);
 	bundle.CFBundleIdentifier = newMainBundleID;
 	
 	if (bundle.isApp) {
@@ -33,17 +33,17 @@
 }
 
 + (void)setBundle:(MUPath *)bundle iTunesFileSharingEnable:(BOOL)enable {
-	if (enable) {
-		CLInfo(@"Enable iTunes file sharing.");
-		bundle.UIFileSharingEnabled = YES;
-	} else {
-		CLInfo(@"Disable iTunes file sharing.");
-		bundle.UIFileSharingEnabled = NO;
-	}
+	CLInfo(@"%@ iTunes file sharing.", enable ? @"Enable" : @"Disable");
+	bundle.UIFileSharingEnabled = enable;
+}
+
++ (void)setBundle:(MUPath *)bundle supportsOpeningDocumentsInPlace:(BOOL)supportsOpeningDocumentsInPlace {
+	CLInfo(@"%@ open documents in place", supportsOpeningDocumentsInPlace ? @"Enable" : @"Disable");
+	bundle.LSSupportsOpeningDocumentsInPlace = supportsOpeningDocumentsInPlace;
 }
 
 + (void)setBundle:(MUPath *)bundle bundleShortVersionString:(NSString *)version {
-	CLInfo(@"%@ = %@ ", bundle.lastPathComponent, version);
+	CLInfo(@"Set %@ short version: %@", bundle.lastPathComponent, version);
 	bundle.CFBundleShortVersionString = version;
 	
 	if (bundle.isApp) {
@@ -57,7 +57,7 @@
 }
 
 + (void)setBundle:(MUPath *)bundle bundleVersion:(NSString *)version {
-	CLInfo(@"%@ = %@ ", bundle.lastPathComponent, version);
+	CLInfo(@"Set %@ version: %@", bundle.lastPathComponent, version);
 	bundle.CFBundleVersion = version;
 	
 	if (bundle.isApp) {
@@ -72,12 +72,13 @@
 
 + (void)setBundle:(MUPath *)bundle supportAllDevices:(BOOL)supportAllDevices {
 	if (supportAllDevices) {
+		CLInfo(@"Remove UISupportedDevices");
 		[bundle supportAllDevices];
 	}
 }
 
 + (void)setBundle:(MUPath *)bundle bundleDisplayName:(NSString *)bundleDisplayName {
-	CLInfo(@"%@ = %@", bundle.lastPathComponent, bundleDisplayName);
+	CLInfo(@"Set %@ display name: %@", bundle.lastPathComponent, bundleDisplayName);
 	bundle.CFBundleDisplayName = bundleDisplayName;
 	[bundle enumerateContentsUsingBlock:^(MUPath *content, BOOL *stop) {
 		if (!content.isDirectory || ![content isA:@"lproj"]) {
@@ -94,7 +95,6 @@
 			return;
 		}
 		
-		CLInfo(@"%@ = %@", content.lastPathComponent, bundleDisplayName);
 		info[@"CFBundleDisplayName"] = bundleDisplayName;
 		[info writeToFile:InfoPlist_string.string atomically:YES];
 	}];

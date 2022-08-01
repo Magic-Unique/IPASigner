@@ -153,6 +153,9 @@ $ ipasigner sign <development|ad-hoc|distribution|in-house> --help
 --file-sharing
 --no-file-sharing
 
+# Enable or disable opening documents in place
+--file-place
+--no-file-place
 ```
 
 ### Binary

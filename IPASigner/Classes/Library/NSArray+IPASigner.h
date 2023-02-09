@@ -12,6 +12,8 @@
 
 - (ObjectType)filter:(BOOL(^)(ObjectType obj))filter choose:(ObjectType(^)(ObjectType obj1, ObjectType obj2))choose;
 
+- (ObjectType)signer_first:(BOOL (^)(ObjectType obj))filter;
+
 - (NSArray<ObjectType> *)signer_filte:(BOOL (^)(ObjectType obj))filter;
 
 - (NSDictionary<NSString *, ObjectType> *)signer_mapWithKey:(NSString *(^)(ObjectType obj))keyBlock

@@ -24,6 +24,15 @@
 	return result;
 }
 
+- (id)signer_first:(BOOL (^)(id))filter {
+	for (id obj in self) {
+		if (filter(obj)) {
+			return obj;
+		}
+	}
+	return nil;
+}
+
 - (NSArray *)signer_filte:(BOOL (^)(id))filter {
 	NSMutableArray *list = [NSMutableArray array];
 	for (id obj in self) {

@@ -1,4 +1,13 @@
 PODS:
+  - AltSign/Core (0.1)
+  - AltSign/CoreCrypto (0.1)
+  - AltSign/macOS (0.1):
+    - AltSign/Core
+    - AltSign/CoreCrypto
+    - OpenSSL-Universal
+  - AppleSession (0.0.1):
+    - AltSign/Core
+    - OpenSSL-Universal
   - CommandLine (2.4.6):
     - CommandLine/ANSI (= 2.4.6)
     - CommandLine/Command (= 2.4.6)
@@ -25,6 +34,7 @@ PODS:
     - libMachO
   - MobileProvision (1.0.1)
   - MUFoundation/MUPath (0.0.5)
+  - OpenSSL-Universal (1.1.1900)
   - optool (0.1.2):
     - optool/Core (= 0.1.2)
     - optool/ObjC (= 0.1.2)
@@ -34,11 +44,14 @@ PODS:
   - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
+  - AltSign/macOS (from `./CocoaPods`)
+  - AppleSession (from `https://gitee.com/xteam/AppleSession.git`, branch `main`)
   - CommandLine
   - libMachO (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
   - MachOKit (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
   - MobileProvision
   - MUFoundation/MUPath
+  - OpenSSL-Universal (from `./CocoaPods`)
   - optool (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.2`)
   - SSZipArchive
 
@@ -50,17 +63,30 @@ SPEC REPOS:
     - SSZipArchive
 
 EXTERNAL SOURCES:
+  AltSign:
+    :podspec: "./CocoaPods"
+  AppleSession:
+    :branch: main
+    :git: https://gitee.com/xteam/AppleSession.git
   libMachO:
     :git: https://github.com/Magic-Unique/MachOKit.git
     :tag: 0.1.1
   MachOKit:
     :git: https://github.com/Magic-Unique/MachOKit.git
     :tag: 0.1.1
+  OpenSSL-Universal:
+    :podspec: "./CocoaPods"
   optool:
     :git: https://github.com/Magic-Unique/MachOKit.git
     :tag: 0.1.2
 
 CHECKOUT OPTIONS:
+  AltSign:
+    :commit: 1c44cfdcafc1ef301c9a0a20a96be0983bb5a003
+    :git: https://gitee.com/xteam/AltSign.git
+  AppleSession:
+    :commit: 7a4f54d741456803dc5ffcc0f97339dfbffdcc0e
+    :git: https://gitee.com/xteam/AppleSession.git
   libMachO:
     :git: https://github.com/Magic-Unique/MachOKit.git
     :tag: 0.1.1
@@ -72,14 +98,17 @@ CHECKOUT OPTIONS:
     :tag: 0.1.2
 
 SPEC CHECKSUMS:
+  AltSign: 1ac70b33db6dd8c0ec09d2fc2ceccfd3a6d0a54d
+  AppleSession: 430d2cc2d0e1dd0e40db2a84390bc82125cf6694
   CommandLine: 4801986f6cd7fed64239ee5320be5e5c683edce3
   libMachO: eb534f859db5feaff272e8ed2e50770fbc679e0e
   MachOKit: 72dfbceb4f6e04905f67024b94f80fdb677dd793
   MobileProvision: b9b8166ac061b11c7440cc3881ac94ebc8dce58f
   MUFoundation: d56f948f4c818f46a19ead18f38014e6330f40c3
+  OpenSSL-Universal: ff8851a89542ae24023a6cb2c83a2d53d9021ec8
   optool: 51402602b6ac35b3f83fa85f5595d8dbd4fba52c
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
 
-PODFILE CHECKSUM: 43698ced50150894e1b29cef429337e533f19beb
+PODFILE CHECKSUM: 7ce2226651e4f929747943b807c16ecdea1d6037
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

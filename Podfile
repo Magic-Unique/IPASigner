@@ -3,7 +3,7 @@
 
 target 'IPASigner' do
   # Comment the next line if you don't want to use dynamic frameworks
-  platform :osx, '10.10'
+  platform :osx, '11.0'
   inhibit_all_warnings!
 
   # Pods for IPASigner
@@ -15,5 +15,8 @@ target 'IPASigner' do
   pod 'libMachO', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.1'
   pod 'MachOKit', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.1'
   pod 'optool', :git => 'https://github.com/Magic-Unique/MachOKit.git', :tag => '0.1.2'
+  pod 'OpenSSL-Universal', :podspec => './CocoaPods'
+  pod 'AltSign', :podspec => './CocoaPods', :subspecs => ['macOS']
+  pod 'AppleSession', :git => 'https://gitee.com/xteam/AppleSession.git', :branch => 'main'
 
 end

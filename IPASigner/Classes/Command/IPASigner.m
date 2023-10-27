@@ -16,6 +16,7 @@
 	command.setQuery(@"bundle-version").optional().setExample(@"1.0.0").setExplain(@"Modify CFBundleVersion");
 	command.setQuery(@"build-version").optional().setExample(@"1000").setExplain(@"Modify CFBundleShortVersionString");
 	command.setQuery(@"bundle-display-name").optional().setExample(@"NAME").setExplain(@"Modify CFBundleDisplayName");
+	command.setQuery(@"bundle-icon").optional().setExample(@"/path/to/AppIcon.png").setExplain(@"Modify app icon");
 	command.setFlag(@"support-all-devices").setAbbr('a').setExplain(@"Remove Info's value for keyed UISupportDevices.");
 	command.setFlag(@"file-sharing").setExplain(@"Enable iTunes file sharing");
 	command.setFlag(@"no-file-sharing").setExplain(@"Disable iTunes file sharing");
@@ -44,6 +45,7 @@
 	options.CFBundleVersion = process.queries[@"bundle-version"];
 	options.CFBundleDisplayName = process.queries[@"bundle-display-name"];
 	options.CFBundleShortVersionString = process.queries[@"build-version"];
+	options.bundleIconPath = process.queries[@"bundle-icon"];
 	options.deletePlugIns = [process flag:@"rm-plugins"];
 	options.deleteWatches = [process flag:@"rm-watches"];
 	options.deleteExtensions = [process flag:@"rm-ext"];

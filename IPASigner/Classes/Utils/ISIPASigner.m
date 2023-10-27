@@ -137,9 +137,19 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 		CLPopIndent();
 	}
 	
+	if (options.bundleIconPath) {
+		MUPath *path = [MUPath pathWithString:options.bundleIconPath];
+		if (!path.isFile) {
+			CLWarning(@"The bundle path is not a file.");
+		} else {
+			CLInfo(@"Modify app icon: %@", path.lastPathComponent);
+			[app fixIcons:path];
+		}
+	}
+	
 	if (options.fixIcons) {
 		CLInfo(@"Fix icons...");
-		[app fixIcons];
+		[app fixIcons:nil];
 	}
 
 	[ISInfoModifier setBundle:app supportAllDevices:YES];

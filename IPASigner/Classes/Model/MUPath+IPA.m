@@ -129,34 +129,38 @@
 	}
 }
 
-- (void)fixIcons {
-	NSArray<MUPath *> *list = [self contentsWithFilter:^BOOL(MUPath *content) {
-		return [content isA:@"png"] && [content.lastPathComponent hasPrefix:@"AppIcon"];
-	}];
-	if (list.count == 0) {
-		return;
-	}
-	NSSize maxSize = NSZeroSize;
-	MUPath *maxItem = nil;
-	for (MUPath *item in list) {
-		NSImage *image = [[NSImage alloc] initWithContentsOfFile:item.string];
-		if (!maxItem || image.size.width > maxSize.width) {
-			maxItem = item;
-			maxSize = image.size;
+- (void)fixIcons:(MUPath *)targetIcon {
+	if (!targetIcon) {
+		NSArray<MUPath *> *list = [self contentsWithFilter:^BOOL(MUPath *content) {
+			return [content isA:@"png"] && [content.lastPathComponent hasPrefix:@"AppIcon"];
+		}];
+		if (list.count == 0) {
+			return;
 		}
+		NSSize maxSize = NSZeroSize;
+		MUPath *maxItem = nil;
+		for (MUPath *item in list) {
+			NSImage *image = [[NSImage alloc] initWithContentsOfFile:item.string];
+			if (!maxItem || image.size.width > maxSize.width) {
+				maxItem = item;
+				maxSize = image.size;
+			}
+		}
+		targetIcon = maxItem;
 	}
 	
-	if (!maxItem) {
+	if (!targetIcon) {
 		return;
 	}
 	NSArray *iconNames = @[@"icon.png", @"icon@2x.png", @"icon@3x.png"];
 	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithContentsOfFile:self.infoPath.string];
 	info[@"CFBundleIcons"] = nil;
+	info[@"CFBundleIcons~ipad"] = nil;
 	info[@"CFBundleIconFiles"] = iconNames;
 	[info writeToFile:self.infoPath.string atomically:YES];
 	for (NSString *iconName in iconNames) {
 		MUPath *target = [self subpathWithComponent:iconName];
-		[maxItem copyTo:target autoCover:YES];
+		[targetIcon copyTo:target autoCover:YES];
 	}
 }
 

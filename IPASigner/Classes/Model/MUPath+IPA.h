@@ -44,6 +44,6 @@
 
 - (void)supportAllDevices;
 
-- (void)fixIcons;
+- (void)fixIcons:(MUPath *)target;
 
 @end

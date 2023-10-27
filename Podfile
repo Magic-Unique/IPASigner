@@ -3,7 +3,7 @@
 
 target 'IPASigner' do
   # Comment the next line if you don't want to use dynamic frameworks
-  platform :osx, '10.10'
+  platform :osx, '10.13'
   inhibit_all_warnings!
 
   # Pods for IPASigner

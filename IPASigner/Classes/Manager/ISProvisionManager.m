@@ -12,6 +12,12 @@
 @implementation MUPath (Provision)
 
 + (instancetype)provisionPath {
+	// for Xcode 16 and later
+	MUPath *path = [MUPath pathWithString:@"~/Library/Developer/Xcode/UserData/Provisioning Profiles"];
+	if (path.isDirectory) {
+		return path;
+	}
+	// for Xcode 15 and before
 	return [MUPath pathWithString:@"~/Library/MobileDevice/Provisioning Profiles"];
 }
 

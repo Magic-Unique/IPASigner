@@ -16,17 +16,13 @@
 #import <SSZipArchive/SSZipArchive.h>
 
 #import "NSArray+IPASigner.h"
-#import "NSUserDefaults+IPASigner.h"
-
-#define ISGetConfig(class, key) ((class *)[[NSUserDefaults standardUserDefaults] objectForKey:key])
-#define ISSetConfig(key, value) ([[NSUserDefaults standardUserDefaults] setValue:value forKey:key])
-
-#define ISSelStr(sel) NSStringFromSelector(@selector(sel))
-
-#define IS_CONFIG_KEY_default_profile @"default-profile"
-
-#define IS_CONFIG_ALL_KEYS @[IS_CONFIG_KEY_default_profile]
 
 #define guard(pattern) if (pattern) {}
+
+CLConvertClass(MUPath, CLPath) { return [MUPath pathWithString:string]; }
+
+#define IPA_ERROR(c, ...) [NSError errorWithDomain:@"IPASigner" code:c userInfo:@{ NSLocalizedDescriptionKey : [NSString stringWithFormat: __VA_ARGS__] }];
+
+#define IPA_VERSION "3.0.0"
 
 #endif /* PrefixHeader_pch */

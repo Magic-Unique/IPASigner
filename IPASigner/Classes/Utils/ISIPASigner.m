@@ -209,7 +209,7 @@ const ISMachOPlatform ISMachOPlatformArm64 = @"arm64";
 		OPTBinary *binary = [OPTBinary binaryWithPath:app.CFBundleExecutable.string];
 		for (MUPath *inject in options.injectDylibs) {
 			if (!inject.isExist) {
-				CLError(@"The dylib(%@) can not be injected, because the file is not existed.");
+				CLError(@"The dylib(%@) can not be injected, because the file is not existed.", inject.lastPathComponent);
 				return NO;
 			}
 			

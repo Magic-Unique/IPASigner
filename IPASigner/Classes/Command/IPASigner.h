@@ -7,19 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ISIPASigner.h"
+#import <CommandLine/CommandLine.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IPASigner : NSObject
-
-+ (void)addGeneralArgumentsToCommand:(CLCommand *)command;
-
-+ (ISIPASignerOptions *)genSignOptionsFromProcess:(CLProcess *)process;
-
-+ (MUPath *)inputPathFromProcess:(CLProcess *)process;
-
-+ (MUPath *)outputPathFromProcess:(CLProcess *)process;
+@interface IPASigner : CLCommand
 
 @end
 

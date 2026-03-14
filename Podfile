@@ -8,7 +8,7 @@ target 'IPASigner' do
 
   # Pods for IPASigner
 
-  pod 'CommandLine'
+  pod 'CommandLine', '3.2.0'
   pod 'MUFoundation/MUPath'
   pod 'MobileProvision'
   pod 'SSZipArchive'

@@ -65,7 +65,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "sign"
+            argument = "provision prune"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "sign --help"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -74,9 +78,32 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "sign in-house /Users/wushuang/Desktop/calculator.ipa --bundle-id com.bjlc.luckinworkstation"
-            isEnabled = "YES">
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "resign -p ~/Downloads/AllDev.mobileprovision ~/Downloads/unc0ver_Release_8.0.2.ipa"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-s - &quot;~/Downloads/Guqin Tuner_3.5.ipa&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--help"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--version"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "IPASIGNER_DEFAULT_PROFILE"
+            value = "AllDev"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

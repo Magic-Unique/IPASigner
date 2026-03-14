@@ -9,7 +9,7 @@
 #import "ISShellCodesign.h"
 
 BOOL ISCodesign(NSString *identity, BOOL force, BOOL verify, NSString *entitlements, NSString *path) {
-    BOOL verbose = [[CLProcess currentProcess] flag:@"verbose"];
+	BOOL verbose = [CLCommand currentCommand].verbose;
 	NSString *result = ISShellLaunch(nil, IS_BIN_CODESIGN, ^(NSMutableArray *arguments) {
 		if (verify) {
 			[arguments addObject:@"--verify"];

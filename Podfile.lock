@@ -1,24 +1,38 @@
 PODS:
-  - CommandLine (2.4.6):
-    - CommandLine/ANSI (= 2.4.6)
-    - CommandLine/Command (= 2.4.6)
-    - CommandLine/Interface (= 2.4.6)
-    - CommandLine/Launcher (= 2.4.6)
-    - CommandLine/Main (= 2.4.6)
-    - CommandLine/Tools (= 2.4.6)
-  - CommandLine/ANSI (2.4.6):
+  - CommandLine (3.2.0):
+    - CommandLine/Command (= 3.2.0)
+    - CommandLine/Interface (= 3.2.0)
+    - CommandLine/Launcher (= 3.2.0)
+  - CommandLine/ANSI (3.2.0):
     - CommandLine/Main
     - CommandLine/Tools
-  - CommandLine/Command (2.4.6):
+  - CommandLine/Command (3.2.0):
+    - CommandLine/ANSI
+    - CommandLine/Error
+    - CommandLine/Helper
+    - CommandLine/I18N
+    - CommandLine/Info
+    - CommandLine/Main
+  - CommandLine/Error (3.2.0):
+    - CommandLine/I18N
+    - CommandLine/Main
+  - CommandLine/Helper (3.2.0):
+    - CommandLine/ANSI
+    - CommandLine/I18N
+    - CommandLine/Info
+    - CommandLine/Main
+  - CommandLine/I18N (3.2.0):
+    - CommandLine/Main
+  - CommandLine/Info (3.2.0):
+    - CommandLine/I18N
+    - CommandLine/Main
+  - CommandLine/Interface (3.2.0):
     - CommandLine/ANSI
     - CommandLine/Main
-  - CommandLine/Interface (2.4.6):
-    - CommandLine/ANSI
+  - CommandLine/Launcher (3.2.0):
     - CommandLine/Main
-  - CommandLine/Launcher (2.4.6):
-    - CommandLine/Main
-  - CommandLine/Main (2.4.6)
-  - CommandLine/Tools (2.4.6):
+  - CommandLine/Main (3.2.0)
+  - CommandLine/Tools (3.2.0):
     - CommandLine/Main
   - libMachO (0.1.1)
   - MachOKit (0.1.1):
@@ -34,7 +48,7 @@ PODS:
   - SSZipArchive (2.2.2)
 
 DEPENDENCIES:
-  - CommandLine
+  - CommandLine (= 3.2.0)
   - libMachO (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
   - MachOKit (from `https://github.com/Magic-Unique/MachOKit.git`, tag `0.1.1`)
   - MobileProvision
@@ -43,11 +57,12 @@ DEPENDENCIES:
   - SSZipArchive
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://mirrors.tencent.com/repository/generic/pod-go/T-CocoaPods/Specs/:
+    - SSZipArchive
+  trunk:
     - CommandLine
     - MobileProvision
     - MUFoundation
-    - SSZipArchive
 
 EXTERNAL SOURCES:
   libMachO:
@@ -72,14 +87,14 @@ CHECKOUT OPTIONS:
     :tag: 0.1.2
 
 SPEC CHECKSUMS:
-  CommandLine: 4801986f6cd7fed64239ee5320be5e5c683edce3
+  CommandLine: 7691d0b8457730cd772e00fc07faacf4a1402187
   libMachO: eb534f859db5feaff272e8ed2e50770fbc679e0e
   MachOKit: 72dfbceb4f6e04905f67024b94f80fdb677dd793
   MobileProvision: b9b8166ac061b11c7440cc3881ac94ebc8dce58f
   MUFoundation: d56f948f4c818f46a19ead18f38014e6330f40c3
   optool: 51402602b6ac35b3f83fa85f5595d8dbd4fba52c
-  SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
+  SSZipArchive: bf4a2ddf6602805bc591f2008ef69d42ff95dce6
 
-PODFILE CHECKSUM: bee8a8a741345b2813e9aea1f88e1d7ec8c24001
+PODFILE CHECKSUM: e617304d5f591d2229da289e7f6a39d56754958a
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.16.2

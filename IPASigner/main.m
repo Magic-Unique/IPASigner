@@ -6,16 +6,12 @@
 //  Copyright © 2019 Magic-Unique. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "IPASigner.h"
 
 int main(int argc, const char * argv[]) {
+	int retCode = 0;
 	@autoreleasepool {
-		CLCommand.mainCommand.explain = @"An signer tools for ipa file.";
-		CLCommand.mainCommand.version = @"1.1.0";
-		CLCommand.parametersSortType = CLSortTypeByAddingQueue;
-		CLMakeSubcommand(IPASigner, __init_);
-		return [CLCommand process];
+		retCode = [IPASigner main];
     }
-    return 0;
+    return retCode;
 }

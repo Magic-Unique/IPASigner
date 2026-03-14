@@ -53,9 +53,7 @@
 @synthesize nameMap = _nameMap;
 - (NSDictionary<NSString *,ISProvision *> *)nameMap {
 	if (!_nameMap) {
-		_nameMap = [self.installedProvisions signer_mapWithKey:^NSString *(ISProvision *obj) {
-			return obj.provision.Name;
-		} choose:^ISProvision *(ISProvision *obj1, ISProvision *obj2) {
+		_nameMap = [self.installedProvisions signer_mapWithKeyPath:@"provision.Name" filter:nil choose:^ISProvision *(ISProvision *obj1, ISProvision *obj2) {
 			return ISGetNewestProvision(obj1, obj2);
 		}];
 	}
@@ -65,9 +63,7 @@
 @synthesize bundleIDMap = _bundleIDMap;
 - (NSDictionary<NSString *,ISProvision *> *)bundleIDMap {
 	if (!_bundleIDMap) {
-		_bundleIDMap = [self.installedProvisions signer_mapWithKey:^NSString *(ISProvision *obj) {
-			return obj.provision.bundleIdentifier;
-		} choose:^ISProvision *(ISProvision *obj1, ISProvision *obj2) {
+		_bundleIDMap = [self.installedProvisions signer_mapWithKeyPath:@"provision.bundleIdentifier" filter:nil choose:^ISProvision *(ISProvision *obj1, ISProvision *obj2) {
 			return ISGetNewestProvision(obj1, obj2);
 		}];
 	}

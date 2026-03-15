@@ -14,26 +14,63 @@ A simple, quickly code sign tool for *.ipa file.
 4. Select **IPASigner (Release)** scheme and build.
 5. do `$ ipasigner`, You will get:
 
-```
-Usage:
+```Usage:
+
+    $ ipasigner [--sign <PROFILE>] [--replace] [Options] </path/to/input.ipa> [/path/to/output.ipa]
+
+      SIGN/EDIT an ipa/app.
 
     $ ipasigner <COMMAND>
 
-    An signer tools for ipa file.
+      SIGN/EDIT an ipa/app.
 
 Commands:
 
-    + sign        Sign IPA with standard mode.
-    + resign      Sign IPA with custom mode.
-    + provision   Lookin for local provision profiles.
+    + provision                                  CRUD for *.mobileprovision
+
+Arguments:
+
+    </path/to/input.ipa>                         Input ipa path.
+    [/path/to/output.ipa]                        Output ipa path.
 
 Options:
 
-    --version     Show the version of the tool
-    --verbose     Show more information
-    --help        Show help banner of specified command
-    --silent      Show nothing
-    --no-ansi     Show output without ANSI codes
+    -s|--sign <PROFILE>                          Provision profile to sign or nil to edit-only.
+                                                 NAME/UUID/BUNDLE_ID/FILE_PATH: Special profile to sign app and ext.
+                                                 app-store/in-house/ad-hoc/development: Sign with match bundle-id profile.
+                                                 -: sign with default profile. (env: IPASIGNER_DEFAULT_PROFILE)
+    -i|--bundle-id <com.xxx.xxx>                 Modify CFBundleIdentifier
+       --bundle-version <1.0.0>                  Modify CFBundleVersion
+       --build-version <1000>                    Modify CFBundleShortVersionString
+       --bundle-display-name <NAME>              Modify CFBundleDisplayName
+       --bundle-icon </path/to/AppIcon.png>      Modify app icon
+    -a|--support-all-devices                     Remove Info's value for keyed UISupportDevices.
+       --file-sharing                            Enable iTunes file sharing
+       --no-file-sharing                         Disable iTunes file sharing
+       --file-place                              Enable opening documents in place
+       --no-file-place                           Disable opening documents in place
+       --fix-icons                               Fix icons-losing on high devices.
+       --thin <armv7|arm64>                      Thin binary
+    -I|--inject </path/to/dylib>, ...            Inject dylib(s) into binary.
+    -r|--remove-extensions                       Delete all watch apps and plugins.
+    -R|--replace                                 Sign and replace input file.
+    -D|--get-task-allow <1|0>                    Modify `get-task-allow` in entitlements.
+
+Enviroments:
+
+    IPASIGNER_DEFAULT_PROFILE                    Default profile arguments, sign with `-s -`
+    IPASIGNER_SUPPORT_ALL_DEVICES                Remove `UISupportDevices` key by default.
+    IPASIGNER_ENABLE_FILE_SHARING                Enable iTunes file sharing by default.
+    IPASIGNER_REMOVE_EXTENSIONS                  Remove all extensions by default.
+
+Others:
+
+    --silent                                     Show nothing
+    --verbose                                    Show more debugging information
+    --no-ansi                                    Show output without ANSI codes
+    --help                                       Show help banner of specified command
+    --version                                    Show the version of the tool
+
 ```
 
 It's meaning that `ipasigner` has be installed in */usr/local/bin*.
@@ -53,10 +90,10 @@ iOS will not verify the bundle id, so you can sign with any profile (contains di
 IPASigner provide `resign` command to resign with any profile:
 
 ```bash
-$ ipasigner resign --help
+$ ipasigner -s 'Profile Name' INPUT.ipa
 ```
 
-You must type-in a profile argument `-p <profile>` with one of follow values:
+You must type-in a profile argument `-s <profile>` with one of follow values:
 
 * path：Profile Path, A provision profile path.
 * name：Profile Name, it will search in installed profiles, and select newest.
@@ -68,13 +105,13 @@ And it also requires an input path, and an optional output path.
 Such as：
 
 ```bash
-$ ipasigner resign -p Wildcard ./WeChat.ipa
+$ ipasigner -p 'Wildcard' ./WeChat.ipa
 # Sign WeChat.ipa with a wildcard profile named `Wildcard`
 # You will get WeChat.signed.ipa
 ```
 
 ```bash
-$ ipasigner resign -p temp.mobileprovision ./QQ.ipa ./QQ_sign.ipa
+$ ipasigner -p 'temp.mobileprovision' ./QQ.ipa ./QQ_sign.ipa
 # Sign QQ.ipa with temp.mobileprovision
 # You will get QQ_sign.ipa
 ```
@@ -85,21 +122,14 @@ For more detail informations and arguments, do `ipasigner resign --help`.
 
 IPASigner will verify bundle id，and sign App Extensions, Watch Apps with different profile。
 
-IPASigner provide `sign` command to sign in standard mode：
+IPASigner provide `-s` argument to sign in standard mode：
 
 ```bash
-$ ipasigner sign development --help
-$ ipasigner sign ad-hoc --help
-$ ipasigner sign distribution--help
-$ ipasigner sign in-house --help
+$ ipasigner -s 'development' --help # Development profile
+$ ipasigner -s 'ad-hoc' --help # AD-Hoc profile 
+$ ipasigner -s 'app-store'--help # App Store profile
+$ ipasigner -s 'in-house' --help # Enterprice profile
 ```
-
-You must type-in **SIGN_TYPE** follow `sign`:
-
-* **development** Development Profile
-* **ad-hoc** AD Hoc Profile 
-* **distribution** Distribution Profile
-* **in-house** Enterprice Profile
 
 And it also requires an input path, and an optional output path.
 
@@ -111,13 +141,13 @@ You can modify bundle id with argument `--bundle-id`. Attention:
 Such as：
 
 ```bash
-$ ipasigner sign ad-hoc --bundle-id com.my.bundleid ./WeChat.ipa
+$ ipasigner -s 'ad-hoc' --bundle-id com.my.bundleid ./WeChat.ipa
 # Modify WeChat.ipa's bundle id as `com.my.bundleid` and sign with ad-hoc profile
 # You will get WeChat.signed.ipa
 ```
 
 ```bash
-$ ipasigner sign in-house ./QQ.ipa ./QQ_sign.ipa
+$ ipasigner -s 'in-house' ./QQ.ipa ./QQ_sign.ipa
 # Use default bundle id (com.tencent.xin) and sign with in-house profile
 # You will get QQ_sign.ipa
 ```
@@ -125,7 +155,7 @@ $ ipasigner sign in-house ./QQ.ipa ./QQ_sign.ipa
 For more detail informations and arguments, do
 
 ```bash
-$ ipasigner sign <development|ad-hoc|distribution|in-house> --help
+$ ipasigner -s <'development'|'ad-hoc'|'distribution'|'in-house'> --help
 ```
 
 ## Sign with custom package
